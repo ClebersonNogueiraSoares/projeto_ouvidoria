@@ -1,0 +1,14 @@
+.principal {
+  border-radius: 5;
+  background-color: #ccc;
+}
+.login h1{
+  color: #4e4e4e;
+  text-transform: uppercase;
+}
+.form1 {
+  text-align: left;
+}
+#btn-link a{
+	text-decoration: none;
+}
