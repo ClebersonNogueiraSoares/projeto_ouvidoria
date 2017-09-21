@@ -1,23 +1,14 @@
-@extends('layouts.app')
-
+@extends('padrao')
+@section('home','active')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+ <div class="container">
+        <div class="center wow">
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+            <h1>O QUE É UMA OUVIDORIA</h1>
 
-                    You are logged in!
-                </div>
-            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in urna nibh. Donec sollicitudin mi sed enim consequat sagittis. Nunc faucibus turpis turpis, in eleifend ligula cursus sed. Etiam semper risus mi, vitae blandit lectus maximus varius. Cras porta a nisl sit amet dictum. Praesent tincidunt felis at bibendum sollicitudin. Nam non est ac urna tempor ultrices eu a purus. Ut neque tortor, tempor mollis vulputate in, dignissim id risus.</p>
+            <br />
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in urna nibh. Donec sollicitudin mi sed enim consequat sagittis. Nunc faucibus turpis turpis, in eleifend ligula cursus sed. Etiam semper risus mi, vitae blandit lectus maximus varius. Cras porta a nisl sit amet dictum. Praesent tincidunt felis at bibendum sollicitudin. Nam non est ac urna tempor ultrices eu a purus. Ut neque tortor, tempor mollis vulputate in, dignissim id risus. Etiam semper risus mi, vitae blandit lectus maximus varius. Cras porta a nisl sit amet dictum. Praesent tincidunt felis at bibendum sollicitudin. Nam non est ac urna tempor ultrices eu a purus. Ut neque tortor, tempor mollis vulputate in, dignissim id risus.</p>
         </div>
     </div>
-</div>
-@endsection
+@stop

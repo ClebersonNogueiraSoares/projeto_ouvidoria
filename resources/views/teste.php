@@ -6,6 +6,6 @@
         <title></title>
     </head>
     <body>
-        <h1>Tela de Login</h1>
+        <h1>Você deslogou</h1>
     </body>
 </html>

@@ -4,7 +4,7 @@
 
 
 <h1 class="text-center">TELA DE CADASTRO CIDADÃO</h1>
-@if(count($errors) > 0)
+@if(isset($errors))
 <div class="alert alert-danger">
     <strong>ERROS:</strong>
     <ul>

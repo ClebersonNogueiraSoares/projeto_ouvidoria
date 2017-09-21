@@ -18,6 +18,7 @@
 
         <link href="{{asset('css/bootstrap-theme.min.css')}}" rel="stylesheet">
         <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+        <script src="{{asset('js/app.js')}}"></script>
         <script src="{{asset('js/jquery.mask.min.js')}}"></script>
         <script src="{{asset('js/bootstrap-notify.min.js')}}"></script>
         <script src="{{asset('js/validator.js')}}"></script>
@@ -33,22 +34,22 @@
 //                return false;
 //}
 //</script>
-         <script>
-        $(document).ready(function(){
-            $('#telefoneFixo').mask('(00) 0000-0000');
-            $('#telefoneCelular').mask('(00) 00000-0000');
-            $('#cep').mask('00000000');
-        })
-
-        function confirmacao(){
-            $.notify({
-                message: 'Cadastro salvo com sucesso'
-            },{
-                type: 'success'
+        <script>
+            $(document).ready(function () {
+                $('#telefoneFixo').mask('(00) 0000-0000');
+                $('#telefoneCelular').mask('(00) 00000-0000');
+                $('#cep').mask('00000000');
             })
-            return false
-        }
-    </script>
+
+            function confirmacao() {
+                $.notify({
+                    message: 'Cadastro salvo com sucesso'
+                }, {
+                    type: 'success'
+                })
+                return false
+            }
+        </script>
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
@@ -92,7 +93,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><img src="images/brasao.png" height="106" width="99" alt="logo"></a>
+                        <a class="navbar-brand" href="index.html"><img src="{{asset('images/brasao.png')}}" height="106" width="99" alt="logo"></a>
                     </div>
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
@@ -100,19 +101,23 @@
                             <li class="@yield('servico')"><a href="servico.html">Solicitação de Serviço e Denúncia</a></li>
                             <li class="@yield('acompanharServico')"><a href="acompanhar.html">Acompanhar Serviço</a></li>
                             @if(Auth::guest())
-                            <li class="@yield('login')"><a href="/login">Login</a></li>
+                            <li class="@yield('login')"><a href="{{route('login')}}">Login</a></li>
                             <li class="@yield('cadastrar')"><a href="{{route('register')}}">Cadastrar</a></li>
                             @else
-                             <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                              <span class="caret">{{ Auth::user()->nome }} </span>
-                            </a>
+                            <li class="">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"                                                aria-expanded="false">
+                                    <span class="caret">{{ Auth::user()->nome }} </span>
+                                </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/ouvidoria') }}"><i class="fa fa-btn fa-sign-out"></i>Deslogar</a></li>
-                            </ul>
-                        </li>
-                    @endif
+                                <ul class="" id="logout-form" >
+                                    <li><a href="{{ route('logout') }}" >Deslogar</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endif
                             <li class="@yield('sobre')"><a href="sobre.html">Sobre Nós</a></li>
                         </ul>
                     </div>

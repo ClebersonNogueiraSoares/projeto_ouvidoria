@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Cidadao;
+
 use App\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 
 class RegisterController extends Controller {
     /*
@@ -27,7 +29,7 @@ use RegistersUsers;
      *
      * @var string
      */
-    protected $redirectTo = 'teste';
+    protected $redirectTo = 'ouvidoria';
 
     /**
      * Create a new controller instance.
@@ -46,9 +48,24 @@ use RegistersUsers;
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-                    'nome' => 'required|string|max:255',
-                    'email' => 'required|string|email|max:255|unique:users',
-                    'password' => 'required|string|min:6|confirmed',
+        'nome' => 'required|string|max:255',
+        'sexo' => 'required|max:10',
+        'tel_fixo' => 'required|max:15',
+        'tel_cel' => 'required|max:15',
+        'cep' => 'required|max:15',
+        'rua' => 'required|max:45',
+        'numero' => 'required|max:10',
+        'bairro' => 'required|max:45',
+        'cidade' => 'required|max:45',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        ],
+        ['required' => ':attribute é obrigatório',
+        'min' => 'Senha deve conter no mínimo 6 caracteres ',
+        'max' => ':attribute deve conter no máximo 45 caracteres',
+        'email' => ':attribute inválido',
+        'unique:users' => 'Já existe um usuário com este email!',
+        'confirmed' => 'As senhas devem ser iguais!'
         ]);
     }
 
