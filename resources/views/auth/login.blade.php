@@ -30,35 +30,14 @@
                         Entrar
                     </button>
                 </div>
+                <a class="btn btn-link" href="/password/email">
+                    Esqueceu a senha?
+                </a>
             </div>
         </form>
     </div>
 
-    <div class="col-md-6 col-md-offset-3">
 
-        <form class="form-horizontal well">
-
-            <label class="control-label" for="inputEmail">Esqueceu a senha?</label>
-            <br /><br />
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="btn-link" formaction="" >
-                    <span class="glyphicon glyphicon-send"></span>
-                    Criar nova senha
-                </button>
-            </div>
-
-            <hr>
-            <label class="control-label" for="inputEmail">Não tem um cadastro?</label>
-            <br /><br />
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="btn-link" formaction="{{route('register')}}">
-                    <span class="glyphicon glyphicon-send"></span>
-                    Cadastrar novo usuário
-                </button>
-            </div>
-
-        </form>
-    </div>
 
 </section><!--/#error-->
 

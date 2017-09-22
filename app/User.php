@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
