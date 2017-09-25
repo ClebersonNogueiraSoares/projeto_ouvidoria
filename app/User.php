@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-Illuminate\Auth\Passwords\CanResetPassword;
+use App\Notifications\meuResetSenha;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use Notifiable;
 
     /**
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nome', 'email', 'password','nome','sexo','cpf','tel_fixo','tel_cel','cep','rua','numero','bairro','cidade'
+        'nome', 'email', 'password', 'nome', 'sexo', 'cpf', 'tel_fixo', 'tel_cel', 'cep', 'rua', 'numero', 'bairro', 'cidade'
     ];
 
     /**
@@ -27,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function sendPasswordResetNotification($token) {
+        $this->notify(new meuResetSenha($token));
+    }
+
 }

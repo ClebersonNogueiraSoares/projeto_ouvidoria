@@ -1,5 +1,6 @@
 @extends('padrao')
-@section('login','active')
+
+<!--@section('login','active')-->
 @section('content')
 
 
@@ -30,7 +31,7 @@
                         Entrar
                     </button>
                 </div>
-                <a class="btn btn-link" href="/password/email">
+                <a class="btn btn-link" href="{{ route('password.request') }}">
                     Esqueceu a senha?
                 </a>
             </div>

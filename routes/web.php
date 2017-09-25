@@ -13,21 +13,18 @@
  */
 
 Route::get('/', function () {
-    return view('ouvidoria');
+    return view('home');
 });
 
 Route::get('/cadastro', 'OuvidoriaController@adicionarCid');
 Route::post('cadastro/cadastrar', 'OuvidoriaController@salvarCid');
-Route::get('/ouvidoria', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Autenticacao@autenticar');
-Route::get('password/email','RecuperacaoDeSenha@showLinkRequestForm');
-Route::post('password/email','RecuperacaoDeSenha@sendResetLinkEmail');
-Route::get('password/reset/{token}','Auth\PasswordController@getReset');
-Route::post('password/reset','Auth\PasswordController@postReset');
 $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 $this->post('register', 'Auth\RegisterController@register');
 $this->get('logout', 'Auth\LoginController@logout')->name('logout');
+Auth::routes();
 
 
  //Route::get('/logout', 'Autenticacao@getLogout')->name("logout");

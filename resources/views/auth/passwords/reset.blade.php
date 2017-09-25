@@ -1,11 +1,22 @@
-@extends('layouts.app')
-
+@extends('padrao')
+@section('login','active')
 @section('content')
+@if(count($errors)>0)
+<div class="alert alert-danger">
+    <strong>ERROS:</strong>
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+                <div class="panel-heading">Nova senha</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
@@ -13,58 +24,34 @@
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="control-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" value="{{old('email')}}"class="form-control" id="email" value="{{old('email')}}"placeholder="Digite seu email" required>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                         </div>
+                        <br />
+                        <div class="control-group">
+                            <label for="password">Senha</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Digite a sua senha com no mínimo 6 dígitos" required>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <br/>
+                        <div class="control-group">
+                            <label for="password-confirm">Confirmar a senha</label>
+                            <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Digite a sua senha novamente" required>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Reset Password
-                                </button>
-                            </div>
+                        <br />
+                        <div class="control-group">
+                            <button type="submit" name="Cadastrar" class="btn btn-primary" id="btn-link" >
+                                <span class="glyphicon glyphicon-send"></span>
+                                Cadastrar
+                            </button>
                         </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

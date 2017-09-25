@@ -4,26 +4,35 @@
 
 
 <section id="error" class="container text-center">
-    <h1>TELA DE NOVA SENHA</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="recovery-panel panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Recuperação de Senha</h3>
+                    </div>
+                    <div class="panel-body">
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @endif
+                        <form role="form" method="post" action="{{ route('password.email') }}">
+                            {{csrf_field()}}
+                            <fieldset>
+                                <input id="email" name="email" placeholder="email@email.com" class="form-control input-md" required="" type="email">
+                                <span class="help-block">Insira o email cadastrado no sistema</span>       
 
-    <div class="col-md-6 col-md-offset-3">
+                                <button  type="submit" class="btn btn-primary">Recuperar</button>
 
-        <form class="form-horizontal well" method="POST" action="/password/email">
-            {{csrf_field()}}
-            <div class="control-group" style="position: static;">
-                <label for="input-text-1">Email</label>
-                <input type="email" class="form-control" id="input-id-1" placeholder="Digite o email do seu cadastro" required>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <br />
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="btn-link" ><span class="glyphicon glyphicon-send"></span>
-                    Criar nova senha
-                </button>
-            </div>
-        </form>
-    </div>
+        </div>
 
 </section><!--/#error-->
 
 @stop
+
