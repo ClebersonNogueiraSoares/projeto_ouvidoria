@@ -29,7 +29,7 @@ use RegistersUsers;
      *
      * @var string
      */
-    protected $redirectTo = 'ouvidoria';
+    protected $redirectTo = 'home';
 
     /**
      * Create a new controller instance.

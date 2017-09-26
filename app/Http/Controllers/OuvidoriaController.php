@@ -76,7 +76,7 @@ class OuvidoriaController extends Controller{
        $usuario->password = bcrypt(Request::input('password'));
        $usuario->idCidadao = $cid->id;
        $usuario->save();
-       return view('teste')->with('cidadao', $cid);
+       return view('home');
     }
     
 }

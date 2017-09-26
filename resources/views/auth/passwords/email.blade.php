@@ -12,6 +12,17 @@
                         <h3 class="panel-title">Recuperação de Senha</h3>
                     </div>
                     <div class="panel-body">
+                        @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            <strong>ERROS:</strong>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
