@@ -1,4 +1,5 @@
 @extends('padrao')
+@section('title','Cadastrar de Usuário')
 @section('cadastrar','active')
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('padrao')
-
-<!--@section('login','active')-->
+@section('title','Tela de Login')
+@section('login','active')
 @section('content')
 
 
@@ -24,13 +24,14 @@
             </div>
 
             <br />
-            <div class="control-group">
+            <div class="control-group ">
                 <div>
                     <button type="submit" class="btn btn-primary" id="btn-link" href="{{ route('login') }}">
                         <span class="glyphicon glyphicon-send"></span>
                         Entrar
                     </button>
                 </div>
+                <hr>
                 <a class="btn btn-link" href="{{ route('password.request') }}">
                     Esqueceu a senha?
                 </a>

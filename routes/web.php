@@ -26,5 +26,12 @@ $this->post('register', 'Auth\RegisterController@register');
 $this->get('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
+Route::get('/sobre','OuvidoriaController@sobre');
+Route::get('/solicitacao','OuvidoriaController@solicitacao');
+Route::get('/formulario-de-servico','OuvidoriaController@formSolicitacao');
+Route::get('/acompanhar-servico','OuvidoriaController@acompanhaServico');
+Route::get('/https://www.facebook.com/PrefeituradeTatui/','OuvidoriaController@facebook');
+Route::get('https://www.tatui.sp.gov.br','OuvidoriaController@portal');
+
 
  //Route::get('/logout', 'Autenticacao@getLogout')->name("logout");

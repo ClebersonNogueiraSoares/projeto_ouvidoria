@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Home | Sistema de Ouvidoria @yield('title')</title>
+        <title>@yield('title')</title>
         
         <!-- CSS -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -92,20 +92,20 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><img src="{{asset('images/brasao.png')}}" height="106" width="99" alt="logo"></a>
+                        <a class="navbar-brand" href="/"><img src="{{asset('images/brasao.png')}}" height="106" width="99" alt="logo"></a>
                     </div>
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
                             <li class="@yield('home')"><a href="/">Home</a></li>
-                            <li class="@yield('servico')"><a href="servico.html">Solicitação de Serviço e Denúncia</a></li>
-                            <li class="@yield('acompanharServico')"><a href="acompanhar.html">Acompanhar Serviço</a></li>
+                            <li class="@yield('servico')"><a href="/solicitacao">Solicitação de Serviço e Denúncia</a></li>
+                            <li class="@yield('acompanharServico')"><a href="/acompanhar-servico">Acompanhar Serviço</a></li>
                             @if(Auth::guest())
                             <li class="@yield('login')"><a href="{{route('login')}}">Login</a></li>
                             <li class="@yield('cadastrar')"><a href="{{route('register')}}">Cadastrar</a></li>
                             @else
                             <li class="">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"                                                aria-expanded="false">
-                                    <span class="caret">{{ Auth::user()->nome }} </span>
+                                    <span class="caret">{{substr(ucwords(strtolower(Auth::user()->nome)),0,strpos(ucwords(strtolower(Auth::user()->nome)),' '))}} </span>
                                 </a>
 
                                 <ul class="" id="logout-form" >
@@ -117,7 +117,7 @@
                                 </ul>
                             </li>
                             @endif
-                            <li class="@yield('sobre')"><a href="sobre.html">Sobre Nós</a></li>
+                            <li class="@yield('sobre')"><a href="/sobre">Sobre Nós</a></li>
                         </ul>
                     </div>
                 </div><!--/.container-->
@@ -139,12 +139,12 @@
                         <div class="widget">
                             <h3>Navegação</h3>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="servico.html">Solicitação de serviços e Denúncia</a></li>
-                                <li><a href="acompanhar.html">Acompanhar Serviço</a></li>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="/cadastro">Cadastrar</a></li>
-                                <li><a href="sobre.html">Sobre Nós</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/solicitacao">Solicitação de serviços e Denúncia</a></li>
+                                <li><a href="/acompanhar-servico">Acompanhar Serviço</a></li>
+                                <li><a href="{{route('login')}}">Login</a></li>
+                                <li><a href="{{route('register')}}">Cadastrar</a></li>
+                                <li><a href="/sobre">Sobre Nós</a></li>
                             </ul>
                         </div>
                     </div><!--/.col-md-3-->
@@ -170,7 +170,7 @@
                                 <li><a href="ouvidoria.html">O que é uma Ouvidoria</a></li>
                                 <li><a href="faq.html">Guia de uso do Sistema</a></li>
                                 <li><a href="equipe.html">A nossa Equipe</a></li>
-                                <li><a href="www.tatui.sp.gov.br">Portal da Prefeitura</a></li>
+                                <li><a href="https://www.tatui.sp.gov.br">Portal da Prefeitura</a></li>
                                 <li><a href="https://www.facebook.com/PrefeituradeTatui/">Facebook</a></li>
                                 <li><a href="contato.html">Entre em Contato</a></li>
                             </ul>
@@ -189,8 +189,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ul class="pull-right">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="sobre.html">Sobre Nós</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/sobre">Sobre Nós</a></li>
                             <li><a href="faq.html">Perguntas Frequentes</a></li>
                             <li><a href="contato.html">Entre em contato</a></li>
                         </ul>
