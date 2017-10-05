@@ -22,22 +22,13 @@
         <script src="{{asset('js/bootstrap-notify.min.js')}}"></script>
         <script src="{{asset('js/validator.js')}}"></script>
         <script src="{{asset('js/validator.min.js')}}"></script>
-        <script>
-//function validarSenha(){
-//	senha1 = document.form.password.value
-//	senha2 = document.form.confirmPassword.value
-// 
-//	if (senha1 != senha2)
-//		alert("Erro as senhas são diferentes");
-//                window.location = url;
-//                return false;
-//}
-//</script>
+       
+
         <script>
             $(document).ready(function () {
                 $('#telefoneFixo').mask('(00) 0000-0000');
                 $('#telefoneCelular').mask('(00) 00000-0000');
-                $('#cep').mask('00000000');
+                $('#cep').mask('00000-000');
             })
 
             function confirmacao() {
