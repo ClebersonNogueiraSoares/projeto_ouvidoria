@@ -16,8 +16,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/cadastro', 'OuvidoriaController@adicionarCid');
-Route::post('cadastro/cadastrar', 'OuvidoriaController@salvarCid');
 Route::get('/home', 'HomeController@index')->name('home');
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Autenticacao@autenticar');

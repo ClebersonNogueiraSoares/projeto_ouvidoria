@@ -113,7 +113,7 @@
                     <option value="16">Desmatamento irregular</option>
                     <option value="17">Maus tratos a animais</option>
                     <option value="18">Poda ou retirada de árvores</option>
-                    <option value="19">Despejo de esgoto no rio</option>
+                    <option value="19">Despejo de esgoto ou lixo no rio</option>
                     <option value="20">Outros</option>
                     
                 </select>
@@ -122,64 +122,64 @@
                 <label for="tipoServico">Tipo de serviço</label>
                 <select name="ob" id="setor_obra" class="form-control" >
                     <option value="0" >Selecione</option>
-                    <option>Buraco na via pública</option>
-                    <option value="25">Manutenção de praças</option>
-                    <option value="26">Demora na execução de obra pública</option>
-                    <option value="27">Bueiro/Boca de Lobo/Galerias</option>
-                    <option value="28">Ponto de alagamento</option>
-                    <option value="29">Valas abertas</option>
-                    <option value="30">Poda de árvores</option>
-                    <option value="31">Coleta de lixo</option>
-                    <option value="21">Coleta seletiva</option>
-                    <option value="22">Entulho em via pública</option>
-                    <option value="23">Limpeza em terreno baldio</option>
-                    <option value="24">Limpeza Urbana</option>
-                    <option value="25">Mato alto</option>
-                    <option value="26">Buracos na via</option>
-                    <option value="27">Pontes</option>
-                    <option value="28">Outros</option>
+                    <option value="21">Buraco na via pública</option>
+                    <option value="22">Manutenção de praças</option>
+                    <option value="23">Demora na execução de obra pública</option>
+                    <option value="24">Bueiro/Boca de Lobo/Galerias</option>
+                    <option value="25">Ponto de alagamento</option>
+                    <option value="26">Vala abertas</option>
+                    <option value="27">Poda de árvores</option>
+                    <option value="28">Coleta de lixo</option>
+                    <option value="29">Coleta seletiva</option>
+                    <option value="30">Entulho em via pública</option>
+                    <option value="31">Limpeza em terreno baldio</option>
+                    <option value="32">Limpeza Urbana</option>
+                    <option value="33">Mato alto</option>
+                    <option value="34">Pontes</option>
+                    <option value="35">Outros</option>
                 </select>
             </div>
             <div class="control-group controls controls-row" id="saude" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
                 <select name="sau" id="sau" class="form-control">
                     <option value="0" >Selecione</option>
-                    <option value="29">Demora em marcar consulta/procedimento</option>
-                    <option value="30">Falta de materiais em posto de saúde</option>
-                    <option value="31">Falta de medicação</option>
-                    <option value="32">Foco da dengue</option>
-                    <option value="33">Infestação/Proliferação de animais ou pragas</option>
-                    <option value="34">Médicos</option>
-                    <option value="35">Posto de saúde</option>
-                    <option value="36">Transporte para tratamento</option>
-                    <option value="37">Vacinas</option>
-                    <option value="38">Outros</option>
+                    <option value="36">Demora em marcar consulta ou atendimento</option>
+                    <option value="37">Falta de materiais em posto de saúde</option>
+                    <option value="38">Falta de medicação</option>
+                    <option value="39">Foco da dengue</option>
+                    <option value="40">Infestação, proliferação de animais ou pragas</option>
+                    <option value="41">Médicos</option>
+                    <option value="42">Posto de saúde</option>
+                    <option value="43">Transporte para tratamento</option>
+                    <option value="44">Vacinas</option>
+                    <option value="45">Outros</option>
                 </select>
             </div>
             <div class="control-group controls controls-row" id="seguranca" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
                 <select name="seguranca" id="seg" class="form-control">
                     <option value="0" >Selecione</option>
-                    <option value="39">Baderna</option>
-                    <option value="40">Ponto de assalto/Roubo</option>
-                    <option value="41">Ponto de Prostituição</option>
-                    <option value="42">Ponto de tráfico de drogas</option>
-                    <option value="43">Outros</option>
+                    <option value="46">Baderna ou pertubação da ordem pública</option>
+                    <option value="47">Ponto de assalto/Roubo</option>
+                    <option value="48">Ponto de Prostituição</option>
+                    <option value="49">Ponto de tráfico de drogas</option>
+                    <option value="50">Outros</option>
                 </select>
             </div>
             <div class="control-group controls controls-row" id="transito" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
                 <select name="transito" id="tran" class="form-control">
                     <option value="0" >Selecione</option>
-                    <option value="44">Rampa de acessibilidade</option>
-                    <option value="45">Bloqueio na via</option>
-                    <option value="46">Faixa de pedestre</option>
-                    <option value="47">Lombadas</option>
-                    <option value="48">Placas de sinalização</option>
-                    <option value="49">Mudanças no trânsito</option>
-                    <option value="50">Redutor de velociadade</option>
-                    <option value="51">Semáforo</option>
-                    <option value="52">Outros</option>
+                    <option value="51">Rampa de acessibilidade</option>
+                    <option value="52">Bloqueio na via</option>
+                    <option value="53">Faixa de pedestre</option>
+                    <option value="54">Lombadas</option>
+                    <option value="55">Placas de sinalização</option>
+                    <option value="56">Mudanças no trânsito</option>
+                    <option value="57">Redutor de velociadade</option>
+                    <option value="58">Semáforo</option>
+                    <option value="59">Falta de sinalização na via ou sinalização precária</option>
+                    <option value="60">Outros</option>
                 </select>
             </div>
             <br />
