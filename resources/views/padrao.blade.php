@@ -28,7 +28,7 @@
             $(document).ready(function () {
                 $('#telefoneFixo').mask('(00) 0000-0000');
                 $('#telefoneCelular').mask('(00) 00000-0000');
-                $('#cep').mask('00000-000');
+                $('#postal_code').mask('00000-000');
             })
 
             function confirmacao() {

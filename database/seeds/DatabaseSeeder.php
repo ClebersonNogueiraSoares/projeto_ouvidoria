@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Cidadao;
 use App\Tipo_Usuario;
 use App\User;
 use App\Tipo_Requisicao;
@@ -20,12 +19,12 @@ class DatabaseSeeder extends Seeder {
      */
     public function run() {
         $this->call(TipoUsuarioTableSeeder::class);
-        $this->call(UsuarioTableSeeder::class);
+      //  $this->call(UsuarioTableSeeder::class);
         $this->call(TipoRequisicaoTableSeeder::class);
-        $this->call(LocalTableSeeder::class);
+        //$this->call(LocalTableSeeder::class);
         $this->call(SecretariaTableSeeder::class);
         $this->call(ServicoTableSeeder::class);
-        $this->call(Solicitacao_ServicoTableSeeder::class);
+        //$this->call(Solicitacao_ServicoTableSeeder::class);
     }
 
 }
@@ -66,7 +65,7 @@ class TipoRequisicaoTableSeeder extends Seeder {
 class LocalTableSeeder extends Seeder {
 
     public function run() {
-        Local::create(['cep' => '18275490', 'rua' => 'Jorge Sallum', 'num' => '421', 'cidade' => 'Tatui', 'lat' => '5665', 'lnt' => '545']);
+        Local::create(['cep' => '18275490', 'rua' => 'Jorge Sallum', 'num' => '421', 'cidade' => 'Tatui', 'lat' => '5665', 'lnt' => '545','descricao_local'=>'em frente a linha do trem']);
     }
 
 }
@@ -87,9 +86,13 @@ class ServicoTableSeeder extends Seeder {
 
     public function run() {
         Servico::create(['descricao' => 'Buraco na via publica', 'idSecretaria' => '4']);
-        Servico::create(['descricao' => 'Buraco na via publica', 'idSecretaria' => '4']);
-        Servico::create(['descricao' => 'Limpeza Urbana', 'idSecretaria' => '4']);
+        Servico::create(['descricao' => 'Esgoto', 'idSecretaria' => '4']);
+        Servico::create(['descricao' => 'Fiscalização', 'idSecretaria' => '4']);
+        Servico::create(['descricao' => 'Iluminação pública', 'idSecretaria' => '4']);
+        Servico::create(['descricao' => 'Limpeza urbana', 'idSecretaria' => '4']);
+        Servico::create(['descricao' => 'Lotes', 'idSecretaria' => '4']);
         Servico::create(['descricao' => 'Poda de árvores', 'idSecretaria' => '4']);
+        Servico::create(['descricao' => 'Praças e jardins', 'idSecretaria' => '4']);
     }
 
 }

@@ -25,7 +25,6 @@
                     <div class="control-group">
                         <label for="nome">Nome</label>
                         <input type="text" name="nome" value="{{old('nome')}}"class="form-control" id="nome" placeholder="Digite seu nome completo" required>
-
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -52,7 +51,7 @@
                 <div class="col-md-3">
                     <div class="control-group controls controls-row">
                         <label for="cep">Numero</label>
-                        <input type="text" name="numero"value="{{old('numero')}}" class="form-control" id=""  placeholder="Digite o seu numero"  title="numero" required>
+                        <input type="text" name="numero"value="{{old('numero')}}" class="form-control" id="numero"  placeholder="Digite o seu numero"  title="numero" required>
 
                     </div>
                 </div>
@@ -75,7 +74,7 @@
                 <div class="col-md-3">
                     <div class="control-group controls controls-row">
                         <label for="cep">CEP</label>
-                        <input type="text" name="cep" class="form-control" value="{{old('cep')}}"id="postal_code" placeholder="Digite o CEP" pattern="[0-9]{8}" title="Somente números" required>
+                        <input type="text" name="cep" class="form-control" value="{{old('cep')}}"id="postal_code" placeholder="Digite o CEP"  title="Somente números" >
 
                         <p class="help-block">Exemplo: 18520000</p>
                     </div>
@@ -172,6 +171,7 @@
           if (componentForm[addressType]) {
             var val = place.address_components[i][componentForm[addressType]];
              document.getElementById(addressType).value = val;
+                $('#numero').focus();
              //document.getElementById(component).value = val;
           }
         }

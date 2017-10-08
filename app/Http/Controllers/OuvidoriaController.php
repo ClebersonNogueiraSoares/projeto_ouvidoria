@@ -39,7 +39,7 @@ class OuvidoriaController extends Controller{
                  'sexo'=>'required|max:10',
                  'tel_fixo'=>'required|max:15', 
                  'tel_cel'=>'required|max:15',
-                 'cep'=>'required|max:15',
+                 'cep'=>'max:10',
                  'rua'=>'required|max:45',
                  'numero'=>'required|max:10',
                  'bairro'=>'required|max:45',
