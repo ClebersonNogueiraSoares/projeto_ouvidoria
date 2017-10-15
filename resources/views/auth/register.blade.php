@@ -115,11 +115,13 @@
                 <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Digite a sua senha novamente" required>
             </div>
             <br />
-            <div class="control-group">
-                <button type="submit" name="Cadastrar" class="btn btn-primary" id="btn-link" >
-                    <span class="glyphicon glyphicon-send"></span>
-                    Cadastrar
-                </button>
+           <div class="control-group">
+                <div>
+                    <button type="submit" name="cadastrar" class="btn btn-primary" id="btn-link">
+                        <span class="glyphicon glyphicon-send"></span>
+                        Cadastrar
+                    </button>
+                </div>
             </div>
 
         </fieldset>

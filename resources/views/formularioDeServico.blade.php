@@ -6,8 +6,8 @@
     <h1 class="text-center">REQUISIÇÃO DE SERVIÇOS OU DENÚNCIA - FORMULÁRIO</h1>
 
     <div class="col-md-8 col-md-offset-2 well">
-
-        <form class="form-horizontal">
+        <form class="form-horizontal"  name="form" id="form" method="post" action="/cadastro/servico" enctype="multipart/form-data">
+            {{csrf_field()}}
             <div class="row">
                 <div class="col-md-9">
                     <div class="control-group controls controls-row">
@@ -47,26 +47,32 @@
                 <div class="col-md-9">
                     <div class="control-group controls controls-row">
                         <label for="pontoReferencia">Ponto de referência</label>
-                        <input type="text" name="Ponto de Referencia" class="form-control" id="input-id-5" placeholder="Digite um ponto de referência">
+                        <input type="text" name="descricao_local" class="form-control" id="input-id-5" placeholder="Digite um ponto de referência">
+                        <input type="hidden" name="place_id" id="place_id" >
                     </div>
                 </div>
 
             </div>
-            <br />
+
 
             <div class="row">
                 <div class="col-md-6">
                     <label for="tipo_requisicao">Tipo de requisição</label>
-                    <select name="tipo_requisicao" class="form-control" required>
-                        <option value="0" >Selecione</option>
+                    <select  name="tipo_requisicao" id="tipo_requisicao" class="form-control" onchange="mostrar_protocolo()"required>
+                        <option value="" selected disabled="">Selecione o tipo de requisição</option>
                         <option value="1">Serviço</option>
                         <option value="2">Denúncia</option>  
                     </select>
                 </div>
+
+                <div id="pro" class="col-md-6"  style="display: none" style="position: static;">
+                    <label for="protocolo">Protocolo</label>
+                    <input type="text" name="protocolo" class="form-control" placeholder="Digite o número do Protocolo">
+                </div> 
                 <div class="col-md-6">
                     <label for="sercretaria">Secretaria de destino</label>
-                    <select name="tipo_secretaria" id="tipo_secretaria" class="form-control" onchange="mostrar_secretaria()" required>
-                        <option value="0" >Selecione</option>
+                    <select name="tipo_secretaria" id="tipo_secretaria" class="form-control" onchange="mostrar_secretaria()" required >
+                        <option value="" selected disabled="">Selecione a secretaria</option>
                         <option value="1">Educação</option>
                         <option value="2">Fiscalização</option>
                         <option value="3">Meio ambiente</option>
@@ -80,7 +86,7 @@
             <br />
             <div class="control-group controls controls-row" id="educacao" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="edu" id="edu" class="form-control" >
+                <select name="servico" id="edu" class="form-control" >
                     <option value="0" >Selecione</option>
                     <option value="1">Falta de vaga</option>
                     <option value="2">Merenda</option>
@@ -93,7 +99,7 @@
             </div>
             <div class="control-group controls controls-row" id="fiscalizacao" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="fiscalizacao" id="fiz"class="form-control">
+                <select name="servico" id="fiz"class="form-control">
                     <option value="0" >Selecione</option>
                     <option value="7">Condições sanitárias irregulares</option>
                     <option value="8">Estabelecimento com acessibilidade irregular</option>
@@ -106,7 +112,7 @@
             </div>
             <div class="control-group controls controls-row" id="meio-ambiente" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="meio-ambiente" id="meio" class="form-control">
+                <select name="servico" id="meio" class="form-control">
                     <option value="0" >Selecione</option>
                     <option value="14">Aterro Sanitário irregular</option>
                     <option value="15">Caça predatória</option>
@@ -115,12 +121,12 @@
                     <option value="18">Poda ou retirada de árvores</option>
                     <option value="19">Despejo de esgoto ou lixo no rio</option>
                     <option value="20">Outros</option>
-                    
+
                 </select>
             </div>
             <div class="control-group controls controls-row" id="obras" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="ob" id="setor_obra" class="form-control" >
+                <select name="servico" id="setor_obra" class="form-control" >
                     <option value="0" >Selecione</option>
                     <option value="21">Buraco na via pública</option>
                     <option value="22">Manutenção de praças</option>
@@ -141,7 +147,7 @@
             </div>
             <div class="control-group controls controls-row" id="saude" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="sau" id="sau" class="form-control">
+                <select name="servico" id="sau" class="form-control">
                     <option value="0" >Selecione</option>
                     <option value="36">Demora em marcar consulta ou atendimento</option>
                     <option value="37">Falta de materiais em posto de saúde</option>
@@ -157,7 +163,7 @@
             </div>
             <div class="control-group controls controls-row" id="seguranca" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="seguranca" id="seg" class="form-control">
+                <select name="servico" id="seg" class="form-control">
                     <option value="0" >Selecione</option>
                     <option value="46">Baderna ou pertubação da ordem pública</option>
                     <option value="47">Ponto de assalto/Roubo</option>
@@ -168,7 +174,7 @@
             </div>
             <div class="control-group controls controls-row" id="transito" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="transito" id="tran" class="form-control">
+                <select name="servico" id="tran" class="form-control" >
                     <option value="0" >Selecione</option>
                     <option value="51">Rampa de acessibilidade</option>
                     <option value="52">Bloqueio na via</option>
@@ -188,50 +194,35 @@
                 <label for="email_Contato">
                     Descrição da solicitação
                 </label>
-                <textarea class="form-control" name="Digite com detalhes a sua solicitação" rows="4" placeholder="Digite com detalhes a sua solicitação" required></textarea>
+                <textarea class="form-control" name="observacao" rows="4" placeholder="Digite com detalhes a sua solicitação"></textarea>
             </div>
 
             <br />
             <div class="control-group" id="subir_arquivo" style="display: none">
                 <label for="anexar">Anexar arquivo</label>
-                <input type="file" name="anexar arquivo" id="anexar">
-                  <p class="help-block">Campo não obrigatório.Fotos ou documentos de no máximo 4mb.</p>
+                <input type="file" name="anexar[]">
+                <p class="help-block">Campo não obrigatório.Fotos ou documentos de no máximo 4mb.</p>
+
             </div>
             <br />
-
             <div class="control-group">
-                <div>
-                    <button type="submit" name="cadastrar" class="btn btn-primary" id="btn-link" formaction="sucesso.html">
-                        <span class="glyphicon glyphicon-send"></span>
-                        Cadastrar
-                    </button>
-                </div>
-            </div>
-        </form>
-
-    </div>
-
-    <div class="col-md-8 col-md-offset-2 well">
-
-        <form class="form-horizontal">
-            <div class="control-group">
-                <label for="email_Contato">
-                    Resposta da prefeitura
-                </label>
-                <textarea class="form-control" rows="4" placeholder="Neste quadro serão enviadas respostas em relação à sua solicitação."></textarea>
+                <button type="submit" name="Cadastrar" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-send"></span>
+                    Cadastrar
+                </button>
             </div>
         </form>
     </div>
-
-</section><!--/#error-->
+</section>
 @stop
+
 <script>
 
     var placeSearch, autocomplete;
     var componentForm = {
         route: 'long_name',
         sublocality_level_1: 'long_name',
-        postal_code: 'short_name'
+        postal_code: 'short_name',
     };
 
     function initAutocomplete() {
@@ -262,6 +253,7 @@
             if (componentForm[addressType]) {
                 var val = place.address_components[i][componentForm[addressType]];
                 document.getElementById(addressType).value = val;
+                document.getElementById('place_id').value = place.place_id;
                 $('#numero').focus();
                 //document.getElementById(component).value = val;
             }
@@ -270,21 +262,7 @@
 
     // Bias the autocomplete object to the user's geographical location,
     // as supplied by the browser's 'navigator.geolocation' object.
-    function geolocate() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var geolocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                var circle = new google.maps.Circle({
-                    center: geolocation,
-                    radius: position.coords.accuracy
-                });
-                autocomplete.setBounds(circle.getBounds());
-            });
-        }
-    }
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Mg1b6X5MFnUVnYHm2njnV_IMa_jP-vQ&libraries=places&callback=initAutocomplete"
 async defer></script>
@@ -355,4 +333,29 @@ async defer></script>
         }
 
     }
+    function mostrar_protocolo() {
+        var option = document.getElementById("tipo_requisicao").value;
+        if (option == "2") {
+            document.getElementById("pro").style.display = 'block';
+        } else {
+            document.getElementById("pro").style.display = 'none';
+        }
+    }
+
 </script>
+<script>
+    $('#form').on("submit", function (e){
+       e.preventDefault;
+        swal({
+            title: " Bom trabalho! ",
+            text: " O cadastro realizado! ",
+            icon: " sucesso ",
+            cancel: true,
+            confirm: "Confirm",
+            timer: 3000,
+        });
+       
+
+    
+</script>
+

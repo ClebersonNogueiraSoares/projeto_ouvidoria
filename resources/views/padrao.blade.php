@@ -14,7 +14,6 @@
         <link href="{{asset('css/main.css')}}" rel="stylesheet">
         <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
         <link href="{{asset('css/estilo.css')}}" rel="stylesheet">
-
         <link href="{{asset('css/bootstrap-theme.min.css')}}" rel="stylesheet">
         <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
         <script src="{{asset('js/app.js')}}"></script>
@@ -22,7 +21,7 @@
         <script src="{{asset('js/bootstrap-notify.min.js')}}"></script>
         <script src="{{asset('js/validator.js')}}"></script>
         <script src="{{asset('js/validator.min.js')}}"></script>
-       
+        <script src =" https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script > 
 
         <script>
             $(document).ready(function () {
@@ -96,7 +95,7 @@
                             @else
                             <li class="">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"                                                aria-expanded="false">
-                                    <span class="caret">{{substr(ucwords(strtolower(Auth::user()->nome)),0,strpos(ucwords(strtolower(Auth::user()->nome)),' '))}} </span>
+                                    <span class="caret">{{substr(strtolower(Auth::user()->nome),strpos(strtolower(Auth::user()->nome),' '))}} </span>
                                 </a>
 
                                 <ul class="" id="logout-form" >

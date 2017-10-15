@@ -10,7 +10,7 @@
         <form class="form-horizontal well">
             <fieldset>
                 <legend>Consultar protocolo</legend>
-                <div class="control-group" style="position: static;">
+                <div id="pro" class="control-group" style="position: static;">
                     <label for="protocolo">Protocolo</label>
                     <input type="text" name="protocolo" class="form-control" id="protocolo" placeholder="Digite o número do Protocolo" required>
                 </div>

@@ -15,7 +15,7 @@
 Route::get('/', function () {
     return view('home');
 });
-
+//Telas de autenticação
 Route::get('/home', 'HomeController@index')->name('home');
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Autenticacao@autenticar');
@@ -23,13 +23,17 @@ $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 $this->post('register', 'Auth\RegisterController@register');
 $this->get('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
-
+//Telas de navegação
 Route::get('/sobre','OuvidoriaController@sobre');
 Route::get('/solicitacao','OuvidoriaController@solicitacao');
 Route::get('/formulario-de-servico','OuvidoriaController@formSolicitacao');
 Route::get('/acompanhar-servico','OuvidoriaController@acompanhaServico');
 Route::get('/https://www.facebook.com/PrefeituradeTatui/','OuvidoriaController@facebook');
 Route::get('https://www.tatui.sp.gov.br','OuvidoriaController@portal');
+
+//Telas de Upload ou Busca de dados
+
+Route::post('/cadastro/servico','OuvidoriaController@move');
 
 
  //Route::get('/logout', 'Autenticacao@getLogout')->name("logout");
