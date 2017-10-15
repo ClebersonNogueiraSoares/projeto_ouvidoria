@@ -6,7 +6,7 @@
     <h1 class="text-center">REQUISIÇÃO DE SERVIÇOS OU DENÚNCIA - FORMULÁRIO</h1>
 
     <div class="col-md-8 col-md-offset-2 well">
-        <form class="form-horizontal"  name="form" id="form" method="post" action="/cadastro/servico" enctype="multipart/form-data">
+        <form class="form-horizontal"  name="form" id="form" method="post" action="/cadastro/servico" enctype="multipart/form-data" onsubmit="teste(event)">
             {{csrf_field()}}
             <div class="row">
                 <div class="col-md-9">
@@ -86,7 +86,7 @@
             <br />
             <div class="control-group controls controls-row" id="educacao" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="edu" class="form-control" >
+                <select name="servico" id="edu" class="form-control"  >
                     <option value="0" >Selecione</option>
                     <option value="1">Falta de vaga</option>
                     <option value="2">Merenda</option>
@@ -194,7 +194,7 @@
                 <label for="email_Contato">
                     Descrição da solicitação
                 </label>
-                <textarea class="form-control" name="observacao" rows="4" placeholder="Digite com detalhes a sua solicitação"></textarea>
+                <textarea class="form-control" name="observacao" rows="4" placeholder="Digite com detalhes a sua solicitação" required></textarea>
             </div>
 
             <br />
@@ -344,18 +344,49 @@ async defer></script>
 
 </script>
 <script>
-    $('#form').on("submit", function (e){
-       e.preventDefault;
+    function teste(event) {
         swal({
-            title: " Bom trabalho! ",
-            text: " O cadastro realizado! ",
-            icon: " sucesso ",
-            cancel: true,
-            confirm: "Confirm",
-            timer: 3000,
+            title: "Solicitação realizada com sucesso!",
+            text: "Click em imprimir para obter o seu número de protocolo que será necessário para acompanhamento!",
+            icon: "success",
+            button: "Imprimir",
+        }).then(function () {
+            form.submit();
         });
-       
-
-    
+        event.preventDefault();
+    }
 </script>
+<!--<script>
+        document.querySelector('#form').addEventListener('submit', function(e) {
+            var form = this;
+            e.preventDefault();
+            swal({
+                title: "Sua solicitação foi realizada com sucesso!",
+                text: "Você deseja imprimir o protocolo da solicitação?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Sim,imprimir',
+                cancelButtonText: "Não,obrigado!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: 'Sucesso!',
+                        text: 'Iremos redireciona-lo para imprimir o protocolo',
+                        type: 'success'
+                    }, function() {
+                        form.submit();
+                    });
+                    
+                } else {
+                    swal("Obrigado", "sua solicitação está sendo apurada", "error");
+                    form.submit();
+                }
+            });
+        });
+
+    </script>-->
 
