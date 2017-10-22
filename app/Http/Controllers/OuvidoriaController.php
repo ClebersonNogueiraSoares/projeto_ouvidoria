@@ -44,23 +44,30 @@ class OuvidoriaController extends Controller {
 
     public function criarSolicitacao($file) {
         $local = Local::create([
-        'cep' => Input::get('cep'),
-        'rua' => Input::get('rua'),
-        'num' => Input::get('numero'),
-        'descricao_local' => Input::get('descricao_local'),
-        'place_id' => Input::get('place_id'),
-        'bairro' => Input::get('bairro')
+                    'cep' => Input::get('cep'),
+                    'rua' => Input::get('rua'),
+                    'num' => Input::get('numero'),
+                    'descricao_local' => Input::get('descricao_local'),
+                    'place_id' => Input::get('place_id'),
+                    'bairro' => Input::get('bairro')
         ]);
         $destinationPath = storage_path("app/public/{$file}");
-        $protocolo = Input::get('protocolo') ? Input::get('protocolo'):time() . "/" . date("y");
-        Solicitacao_Servico::create([
+        $protocolo = Input::get('protocolo') ? Input::get('protocolo') : time() . "/" . date("y");
+        $solicitacao = Solicitacao_Servico::create([
             'protocolo' => $protocolo,
+            'status_servicos'=> 1,
             'anexos' => $destinationPath,
             'observacao' => Input::get('observacao'),
-            'idServico' => Input::get('servico'),
+            'idServico' => ((Input::get('servico')) ? Input::get('servico')  :((Input::get('fiz')) ? Input::get('fiz') : ((Input::get('meio')) ? Input::get('meio') : ((Input::get('setor_obra')) ? Input::get('setor_obra') : ((Input::get('sau')) ? Input::get('sau') : ((Input::get('seg')) ? Input::get('seg') : ((Input::get('tran')) ? Input::get('tran') : ""))))))),
             'idTipo_requisicao' => Input::get('tipo_requisicao'),
-            'idLocal' => $local->id
+            'idLocal' => $local->idLocal
         ]);
+       $solicitacao = Solicitacao_Servico::all();
+        return $this->criarHtml($solicitacao->last());
+    }
+
+    public function criarHtml($data) {
+        return view('informacoes-da-solicitacao')->with('data', $data);
     }
 
     public function move(Request $request) {
@@ -78,9 +85,8 @@ class OuvidoriaController extends Controller {
 
                 //Move o arquivo para a pasta indicada
                 $files->move($destinationPath, $name);
-                 
             }
-           return $this->criarSolicitacao($filename);
+            return $this->criarSolicitacao($filename);
         } else {
             return $this->criarSolicitacao($filename = null);
         }

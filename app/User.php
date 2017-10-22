@@ -27,9 +27,17 @@ class User extends Authenticatable {
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+     protected $primaryKey = 'id';
     public function sendPasswordResetNotification($token) {
         $this->notify(new meuResetSenha($token));
+    }
+
+    public function tipo__usuarios() {
+        return $this->belongsTo('App\Tipo_Usuario');
+    }
+
+    public function solicitacao__servicos() {
+        return $this->hasMany('App\Solicitacao_Servico');
     }
 
 }

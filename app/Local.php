@@ -11,6 +11,10 @@ class Local extends Model {
     protected $fillable =[
         'rua','num','descricao_local','place_id','bairro'
     ];
+     protected $primaryKey = 'idLocal';
+    public function solicitacao__servicos(){
+        return $this->hasMany('App\Solicitacao_Servico');
+    }
 
 }
   

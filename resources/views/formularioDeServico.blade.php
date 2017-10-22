@@ -86,8 +86,8 @@
             <br />
             <div class="control-group controls controls-row" id="educacao" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="edu" class="form-control"  >
-                    <option value="0" >Selecione</option>
+                <select name="servico" id="servico" class="form-control"  >
+                    <option value="">Selecione um serviço</option>
                     <option value="1">Falta de vaga</option>
                     <option value="2">Merenda</option>
                     <option value="3">Professores</option>
@@ -99,8 +99,8 @@
             </div>
             <div class="control-group controls controls-row" id="fiscalizacao" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="fiz"class="form-control">
-                    <option value="0" >Selecione</option>
+                <select name="fiz" id="fiz"class="form-control">
+                    <option value="">Selecione</option>
                     <option value="7">Condições sanitárias irregulares</option>
                     <option value="8">Estabelecimento com acessibilidade irregular</option>
                     <option value="9">Estabelecimento sem alvará</option>
@@ -112,8 +112,8 @@
             </div>
             <div class="control-group controls controls-row" id="meio-ambiente" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="meio" class="form-control">
-                    <option value="0" >Selecione</option>
+                <select name="meio" id="meio" class="form-control">
+                    <option value="" >Selecione</option>
                     <option value="14">Aterro Sanitário irregular</option>
                     <option value="15">Caça predatória</option>
                     <option value="16">Desmatamento irregular</option>
@@ -126,8 +126,8 @@
             </div>
             <div class="control-group controls controls-row" id="obras" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="setor_obra" class="form-control" >
-                    <option value="0" >Selecione</option>
+                <select name="setor_obra" id="setor_obra" class="form-control" >
+                    <option value="">Selecione</option>
                     <option value="21">Buraco na via pública</option>
                     <option value="22">Manutenção de praças</option>
                     <option value="23">Demora na execução de obra pública</option>
@@ -147,8 +147,8 @@
             </div>
             <div class="control-group controls controls-row" id="saude" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="sau" class="form-control">
-                    <option value="0" >Selecione</option>
+                <select name="sau" id="sau" class="form-control">
+                    <option value="" >Selecione</option>
                     <option value="36">Demora em marcar consulta ou atendimento</option>
                     <option value="37">Falta de materiais em posto de saúde</option>
                     <option value="38">Falta de medicação</option>
@@ -163,8 +163,8 @@
             </div>
             <div class="control-group controls controls-row" id="seguranca" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="seg" class="form-control">
-                    <option value="0" >Selecione</option>
+                <select name="seg" id="seg" class="form-control">
+                    <option value="" >Selecione</option>
                     <option value="46">Baderna ou pertubação da ordem pública</option>
                     <option value="47">Ponto de assalto/Roubo</option>
                     <option value="48">Ponto de Prostituição</option>
@@ -174,8 +174,8 @@
             </div>
             <div class="control-group controls controls-row" id="transito" style="display: none" >
                 <label for="tipoServico">Tipo de serviço</label>
-                <select name="servico" id="tran" class="form-control" >
-                    <option value="0" >Selecione</option>
+                <select name="tran" id="tran" class="form-control" >
+                    <option value="" >Selecione</option>
                     <option value="51">Rampa de acessibilidade</option>
                     <option value="52">Bloqueio na via</option>
                     <option value="53">Faixa de pedestre</option>
