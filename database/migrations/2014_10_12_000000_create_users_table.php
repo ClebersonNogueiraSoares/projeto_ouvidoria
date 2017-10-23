@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
             $table->string('bairro', 45);
             $table->string('cidade', 45);
             $table->string('email')->unique();
+            $table->string('email_token')->nullable();
             $table->string('password', 60);
             $table->integer('idTipo_usuario')->default(1)->unsigned();
             $table->foreign('idTipo_usuario')->references('idTipo_usuarios')->on('tipo__usuarios');

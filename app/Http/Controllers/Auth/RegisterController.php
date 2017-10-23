@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-
 use App\User;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use App\Jobs\SendVericationEmail;
 
 class RegisterController extends Controller {
     /*
@@ -48,24 +48,23 @@ use RegistersUsers;
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-        'nome' => 'required|string|max:255',
-        'sexo' => 'required|max:10',
-        'tel_fixo' => 'required|max:15',
-        'tel_cel' => 'required|max:15',
-        'cep' => 'max:15',
-        'rua' => 'required|max:45',
-        'numero' => 'required|max:10',
-        'bairro' => 'required|max:45',
-        'cidade' => 'required|max:45',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:6|confirmed',
-        ],
-        ['required' => ':attribute é obrigatório',
-        'min' => 'Senha deve conter no mínimo 6 caracteres ',
-        'max' => ':attribute deve conter no máximo 45 caracteres',
-        'email' => ':attribute inválido',
-        'unique:users' => 'Já existe um usuário com este email!',
-        'confirmed' => 'As senhas devem ser iguais!'
+                    'nome' => 'required|string|max:255',
+                    'sexo' => 'required|max:10',
+                    'tel_fixo' => 'required|max:15',
+                    'tel_cel' => 'required|max:15',
+                    'cep' => 'max:15',
+                    'rua' => 'required|max:45',
+                    'numero' => 'required|max:10',
+                    'bairro' => 'required|max:45',
+                    'cidade' => 'required|max:45',
+                    'email' => 'required|string|email|max:255|unique:users',
+                    'password' => 'required|string|min:6|confirmed',
+                        ], ['required' => ':attribute é obrigatório',
+                    'min' => 'Senha deve conter no mínimo 6 caracteres ',
+                    'max' => ':attribute deve conter no máximo 45 caracteres',
+                    'email' => ':attribute inválido',
+                    'unique:users' => 'Já existe um usuário com este email!',
+                    'confirmed' => 'As senhas devem ser iguais!'
         ]);
     }
 
@@ -91,7 +90,22 @@ use RegistersUsers;
                     'password' => bcrypt($data['password']),
                     'email' => $data['email'],
                     'password' => bcrypt($data['password']),
+                    'email_token' => base64_encode($data['email']),
+                    
         ]);
+    }
+    public function register(Request $request){
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+        dispatch(new SendVericationEmail($user));
+        return view('verification');
+    }
+    public function verify($token){
+        $user = User::where('email_token',$token)->first();
+        $user->verificado = 1;
+        if($user->save()){
+            return view('emailconfirm',['user'=>$user]);
+        }
     }
 
 }

@@ -7,7 +7,8 @@
 
     <div class="col-md-8 col-md-offset-2">
 
-        <form class="form-horizontal well">
+        <form class="form-horizontal well" method="post"action="/buscar/protocolo">
+            {{csrf_field()}}
             <fieldset>
                 <legend>Consultar protocolo</legend>
                 <div id="pro" class="control-group" style="position: static;">
@@ -18,7 +19,7 @@
                 <br />
                 <div class="control-group">
                     <div>
-                        <button name="buscar" type="submit" class="btn btn-primary" id="btn-link" formaction="consulta.html">
+                        <button name="buscar" type="submit" class="btn btn-primary" id="btn-link">
                             <span class="glyphicon glyphicon-send"></span>
                             Buscar
                         </button>

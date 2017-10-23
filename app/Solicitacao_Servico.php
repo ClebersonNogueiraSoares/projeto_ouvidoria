@@ -38,10 +38,6 @@ class Solicitacao_Servico extends Model {
             
            
     }
-    public function teste(){
-        $teste = DB::select('select descricao from secretarias join')->first();
-       
-        return $teste;    
-    }
+ 
 
 }

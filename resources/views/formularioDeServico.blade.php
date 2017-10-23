@@ -355,6 +355,8 @@ async defer></script>
         });
         event.preventDefault();
     }
+    
+    
 </script>
 <!--<script>
         document.querySelector('#form').addEventListener('submit', function(e) {

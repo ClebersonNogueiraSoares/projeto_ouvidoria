@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Input;
 use Symfony\Component\HttpFoundation\Request;
 use App\Local;
 use App\Solicitacao_Servico;
+use Illuminate\Support\Facades\DB;
 
 class OuvidoriaController extends Controller {
 
@@ -66,9 +66,10 @@ class OuvidoriaController extends Controller {
         return $this->criarHtml($solicitacao->last());
     }
 
-    public function criarHtml($data) {
+    public function criarHtml($data){
         return view('informacoes-da-solicitacao')->with('data', $data);
     }
+    
 
     public function move(Request $request) {
         if ($request->file('anexar')) {
@@ -89,6 +90,15 @@ class OuvidoriaController extends Controller {
             return $this->criarSolicitacao($filename);
         } else {
             return $this->criarSolicitacao($filename = null);
+        }
+    }
+    public function buscarProtocolo(){
+        $data = Input::get('protocolo');
+        $protocolo = Solicitacao_Servico::all();
+        $data = $protocolo->whereIn('protocolo', $data);
+        foreach($data as $a){
+                    return view('informacoes-da-solicitacao')->with('data', $a);     
+
         }
     }
 

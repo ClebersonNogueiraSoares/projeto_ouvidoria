@@ -87,18 +87,22 @@
                     <div class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
                             <li class="@yield('home')"><a href="/">Home</a></li>
-                            <li class="@yield('servico')"><a href="/solicitacao">Solicitação de Serviço e Denúncia</a></li>
-                            <li class="@yield('acompanharServico')"><a href="/acompanhar-servico">Acompanhar Serviço</a></li>
+                            <li class="@yield('servico')"><a href="{{url('/solicitacao')}}">Solicitação de Serviço e Denúncia</a></li>
+                            <li class="@yield('acompanharServico')"><a href="{{url('/acompanhar-servico')}}">Acompanhar Serviço</a></li>
+                            
                             @if(Auth::guest())
                             <li class="@yield('login')"><a href="{{route('login')}}">Login</a></li>
                             <li class="@yield('cadastrar')"><a href="{{route('register')}}">Cadastrar</a></li>
+
+                            <!-- MENU DROP DOWN - USUÁRIO LOGADO -->
                             @else
-                            <li class="">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"                                                aria-expanded="false">
-                                    <span class="caret">{{substr(strtolower(Auth::user()->nome),strpos(strtolower(Auth::user()->nome),' '))}} </span>
+                            <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <span class="caret">{{substr(strtolower(Auth::user()->nome),0,strpos(strtolower(Auth::user()->nome),' '))}}</span>
                                 </a>
 
-                                <ul class="" id="logout-form" >
+                                <ul class="dropdown-menu" id="logout-form" >
                                     <li><a href="{{ route('logout') }}" >Deslogar</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
@@ -106,8 +110,10 @@
                                     </li>
                                 </ul>
                             </li>
+                            </ul>
                             @endif
-                            <li class="@yield('sobre')"><a href="/sobre">Sobre Nós</a></li>
+
+                            <li class="@yield('sobre')"><a href="{{url('/sobre')}}">Sobre Nós</a></li>
                         </ul>
                     </div>
                 </div><!--/.container-->
@@ -130,11 +136,11 @@
                             <h3>Navegação</h3>
                             <ul>
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/solicitacao">Solicitação de serviços e Denúncia</a></li>
-                                <li><a href="/acompanhar-servico">Acompanhar Serviço</a></li>
+                                <li><a href="{{url('/solicitacao')}}">Solicitação de serviços e Denúncia</a></li>
+                                <li><a href="{{url('/acompanhar-servico')}}">Acompanhar Serviço</a></li>
                                 <li><a href="{{route('login')}}">Login</a></li>
                                 <li><a href="{{route('register')}}">Cadastrar</a></li>
-                                <li><a href="/sobre">Sobre Nós</a></li>
+                                <li><a href="{{url('/sobre')}}">Sobre Nós</a></li>
                             </ul>
                         </div>
                     </div><!--/.col-md-3-->
@@ -193,6 +199,7 @@
         <script src="{{asset('js/jquery.isotope.min.js')}}"></script>
         <script src="{{asset('js/main.js')}}"></script>
         <script src="{{asset('js/wow.min.js')}}"></script>
+        <script src="{{asset('js/high-contrast.js')}}"></script>
 
     </body>
 </html>

@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Nome do Solicitante</th>
-                        <td>Anônino</td>
+                        <td>{{$data->users->nome}}</td>
                     </tr>
                     <tr>
                         <th scope="row">CEP</th>
