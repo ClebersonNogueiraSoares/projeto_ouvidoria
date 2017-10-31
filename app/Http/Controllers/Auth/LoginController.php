@@ -55,7 +55,7 @@ class LoginController extends Controller
         if ((boolean) $user->verificado) {
             return redirect()->intended($this->redirectPath());
         }
-        return $this->logout($request)->with('message', 'Por favor, ');
+        return $this->logout($request)->with('message', ' ');
     }
     /**
      * Log the user out of the application.

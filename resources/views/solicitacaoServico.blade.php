@@ -11,7 +11,7 @@
             <br />
             <div class="form-group">
                 <div>
-                    <a href="/formulario-de-servico">
+                    <a href="{{url('/formulario-de-servico')}}">
                         <img class="img-fluid img-thumbnail" src="{{asset('images/anonimo.png')}}" height="156" width="202" alt="Requisição anônima">
                     </a>
                 </div>
@@ -20,7 +20,7 @@
             <br /><br /><br /><br />
             <div class="form-group">
                 <div>
-                    <a href="{{route('login')}}">
+                    <a @if(Auth::check()) href="{{url('/home')}}"  @else href="{{route('login')}}"@endif>
                         <img class="img-fluid img-thumbnail" src="{{asset('images/login.png')}}" height="156" width="202" alt="Requisição sem sigilo">
                     </a>
                 </div>

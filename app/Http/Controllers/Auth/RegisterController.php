@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
-
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -9,7 +7,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\Jobs\SendVericationEmail;
-
 class RegisterController extends Controller {
     /*
       |--------------------------------------------------------------------------
@@ -21,16 +18,13 @@ class RegisterController extends Controller {
       | provide this functionality without requiring any additional code.
       |
      */
-
 use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = 'home';
-
     /**
      * Create a new controller instance.
      *
@@ -39,7 +33,6 @@ use RegistersUsers;
     public function __construct() {
         $this->middleware('guest');
     }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -67,7 +60,6 @@ use RegistersUsers;
                     'confirmed' => 'As senhas devem ser iguais!'
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -75,7 +67,6 @@ use RegistersUsers;
      * @return \App\User
      */
     protected function create(array $data) {
-
         return User::create([
                     'nome' => $data['nome'],
                     'sexo' => $data['sexo'],
@@ -107,5 +98,4 @@ use RegistersUsers;
             return view('emailconfirm',['user'=>$user]);
         }
     }
-
 }

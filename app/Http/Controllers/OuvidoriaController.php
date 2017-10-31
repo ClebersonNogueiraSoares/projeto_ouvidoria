@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Input;
 use Symfony\Component\HttpFoundation\Request;
 use App\Local;
 use App\Solicitacao_Servico;
-use Illuminate\Support\Facades\DB;
-
 class OuvidoriaController extends Controller {
 
     use RegistersUsers;
@@ -54,22 +52,21 @@ class OuvidoriaController extends Controller {
         $destinationPath = storage_path("app/public/{$file}");
         $protocolo = Input::get('protocolo') ? Input::get('protocolo') : time() . "/" . date("y");
         $solicitacao = Solicitacao_Servico::create([
-            'protocolo' => $protocolo,
-            'status_servicos'=> 1,
-            'anexos' => $destinationPath,
-            'observacao' => Input::get('observacao'),
-            'idServico' => ((Input::get('servico')) ? Input::get('servico')  :((Input::get('fiz')) ? Input::get('fiz') : ((Input::get('meio')) ? Input::get('meio') : ((Input::get('setor_obra')) ? Input::get('setor_obra') : ((Input::get('sau')) ? Input::get('sau') : ((Input::get('seg')) ? Input::get('seg') : ((Input::get('tran')) ? Input::get('tran') : ""))))))),
-            'idTipo_requisicao' => Input::get('tipo_requisicao'),
-            'idLocal' => $local->idLocal
+                    'protocolo' => $protocolo,
+                    'status_servicos' => 1,
+                    'anexos' => $destinationPath,
+                    'observacao' => Input::get('observacao'),
+                    'idServico' => ((Input::get('servico')) ? Input::get('servico') : ((Input::get('fiz')) ? Input::get('fiz') : ((Input::get('meio')) ? Input::get('meio') : ((Input::get('setor_obra')) ? Input::get('setor_obra') : ((Input::get('sau')) ? Input::get('sau') : ((Input::get('seg')) ? Input::get('seg') : ((Input::get('tran')) ? Input::get('tran') : ""))))))),
+                    'idTipo_requisicao' => Input::get('tipo_requisicao'),
+                    'idLocal' => $local->idLocal
         ]);
-       $solicitacao = Solicitacao_Servico::all();
+        $solicitacao = Solicitacao_Servico::all();
         return $this->criarHtml($solicitacao->last());
     }
 
-    public function criarHtml($data){
+    public function criarHtml($data) {
         return view('informacoes-da-solicitacao')->with('data', $data);
     }
-    
 
     public function move(Request $request) {
         if ($request->file('anexar')) {
@@ -78,27 +75,33 @@ class OuvidoriaController extends Controller {
                 //Recupera o nome original do arquivo
                 $filename = $files->getClientOriginalName();
                 //Recupera a extensão do arquivo
-                $extension = $files->getClientOriginalExtension();
-                //Definindo um nome unico para o arquivo
-                $name = $filename . '.' . $extension;
+//                $extension = $files->getClientOriginalExtension();
+//                //Definindo um nome unico para o arquivo
+//                $name = $filename . '.' . $extension;
                 //Diretório onde será salvo os arquivos
                 $destinationPath = storage_path('app\public');
 
                 //Move o arquivo para a pasta indicada
-                $files->move($destinationPath, $name);
+               $files->move($destinationPath, $filename);
             }
             return $this->criarSolicitacao($filename);
         } else {
             return $this->criarSolicitacao($filename = null);
         }
     }
+
     public function buscarProtocolo(){
         $data = Input::get('protocolo');
+
+        $count = Solicitacao_Servico::where('protocolo', Input::get('protocolo'))->count();
         $protocolo = Solicitacao_Servico::all();
         $data = $protocolo->whereIn('protocolo', $data);
-        foreach($data as $a){
-                    return view('informacoes-da-solicitacao')->with('data', $a);     
-
+        if ($count > 0) {
+            foreach ($data as $a) {
+                return view('resultado-detalhado')->with('data', $a);
+            }
+        } else {
+            return redirect()->action('OuvidoriaController@acompanhaServico')->with('protocolo','   ');
         }
     }
 

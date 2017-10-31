@@ -4,8 +4,16 @@
 @section('content')
 <section class="container login">
     <h1 class="text-center">TELA DE ACOMPANHAMENTO DE SERVIÇOS</h1>
-
-    <div class="col-md-8 col-md-offset-2">
+     @if(session('protocolo'))
+        <script>
+        swal({
+            title: "Desculpe!",
+            text: "O número de protocolo não foi encontrado!",
+            icon: "warning",
+        });
+        </script>
+        @endif
+    <div class="col-md-8 col-md-offset-2"> 
 
         <form class="form-horizontal well" method="post"action="/buscar/protocolo">
             {{csrf_field()}}
@@ -15,7 +23,6 @@
                     <label for="protocolo">Protocolo</label>
                     <input type="text" name="protocolo" class="form-control" id="protocolo" placeholder="Digite o número do Protocolo" required>
                 </div>
-
                 <br />
                 <div class="control-group">
                     <div>

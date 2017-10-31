@@ -2,6 +2,15 @@
 @section('title','Home')
 @section('home','active')
 @section('content')
+@if(session('usuario'))
+        <script>
+        swal({
+            title: "Desculpe!",
+            text: "Você não tem permissão para entrar nesta área!",
+            icon: "error",
+        });
+        </script>
+        @endif
  <div class="container">
         <div class="center wow">
 

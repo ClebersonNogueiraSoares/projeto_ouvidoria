@@ -7,7 +7,7 @@
 <section id="error" class="container text-center">
     <h1>TELA DE LOGIN</h1>
     @if(session('message'))
-    <script>
+        <script>
         swal({
             title: "Por favor!",
             text: "Verifique seu e-mail para ativar sua conta!",

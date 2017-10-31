@@ -12,7 +12,7 @@
  * 
  */
 
-Route::get('/', function () {
+Route::get('/', function (){
     return view('home');
 });
 //Telas de autenticação
@@ -40,4 +40,8 @@ Route::post('/cadastro/servico','OuvidoriaController@move');
 Route::post('/buscar/protocolo','OuvidoriaController@buscarProtocolo');
 
 
- //Route::get('/logout', 'Autenticacao@getLogout')->name("logout");
+ Route::group(['prefix' => 'painel-do-cidadao', 'middleware' => 'cidadao'],function(){
+     Route::get('/','CidadaoController@painel');
+     Route::post('consulta-de-protocolo','CidadaoController@buscarProtocolo');
+     Route::post('reabrir-protocolo','CidadaoController@reabrirProtocolo');
+ });
