@@ -92,7 +92,6 @@ class OuvidoriaController extends Controller {
 
     public function buscarProtocolo(){
         $data = Input::get('protocolo');
-
         $count = Solicitacao_Servico::where('protocolo', Input::get('protocolo'))->count();
         $protocolo = Solicitacao_Servico::all();
         $data = $protocolo->whereIn('protocolo', $data);

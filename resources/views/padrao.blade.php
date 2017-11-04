@@ -49,9 +49,11 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="asset('images/ico/apple-touch-icon-72-precomposed.png')">
         <link rel="apple-touch-icon-precomposed" href="asset('images/ico/apple-touch-icon-57-precomposed.png')">
         <!-- script validação do formulário -->
-    </head><!--/head-->
+    </head>
     <body class="homepage">
-
+        @if(Auth::check())
+            {{Auth::logout()}}
+            @endif
         <header id="header">
             <div class="top-bar">
                 <div class="container">

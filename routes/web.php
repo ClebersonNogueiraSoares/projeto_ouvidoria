@@ -42,6 +42,10 @@ Route::post('/buscar/protocolo','OuvidoriaController@buscarProtocolo');
 
  Route::group(['prefix' => 'painel-do-cidadao', 'middleware' => 'cidadao'],function(){
      Route::get('/','CidadaoController@painel');
+     Route::get('abrir-solicitacao','CidadaoController@cadastrarServico');
+     Route::post('abrir-solicitacao','CidadaoController@moveDeCadastro'); 
+     Route::get('consulta-de-protocolo/{data}','CidadaoController@resultadoDetalhado2');
      Route::post('consulta-de-protocolo','CidadaoController@buscarProtocolo');
-     Route::post('reabrir-protocolo','CidadaoController@reabrirProtocolo');
+     Route::post('reabrir-protocolo/{data}','CidadaoController@reabrirProtocolo');
+     Route::post('enviado{data}','CidadaoController@move');
  });

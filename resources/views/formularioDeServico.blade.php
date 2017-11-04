@@ -70,7 +70,7 @@
                     <input type="text" name="protocolo" class="form-control" placeholder="Digite o número do Protocolo">
                 </div> 
                 <div class="col-md-6">
-                    <label for="sercretaria">Secretaria de destino</label>
+                    <label for="secretaria">Secretaria de destino</label>
                     <select name="tipo_secretaria" id="tipo_secretaria" class="form-control" onchange="mostrar_secretaria()" required >
                         <option value="" selected disabled="">Selecione a secretaria</option>
                         <option value="1">Educação</option>
@@ -344,19 +344,17 @@ async defer></script>
 
 </script>
 <script>
-    function teste(event) {
+    function teste(event){
         swal({
             title: "Solicitação realizada com sucesso!",
             text: "Click em imprimir para obter o seu número de protocolo que será necessário para acompanhamento!",
             icon: "success",
             button: "Imprimir",
-        }).then(function () {
+        }).then(function (){
             form.submit();
         });
         event.preventDefault();
     }
-    
-    
 </script>
 <!--<script>
         document.querySelector('#form').addEventListener('submit', function(e) {

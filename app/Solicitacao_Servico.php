@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Solicitacao_Servico extends Model {
 
     public $timestamps = true;
+     protected $primaryKey = 'idSolicitacao_Servicos';
     protected $fillable = [
-        'protocolo', 'anexos', 'observacao', 'idServico', 'idTipo_requisicao', 'idLocal'
+        'protocolo', 'anexos', 'observacao','idUsuario', 'idServico', 'idTipo_requisicao', 'idLocal'
     ];
 
     public function local() {
@@ -37,6 +38,10 @@ class Solicitacao_Servico extends Model {
             
             
            
+    }
+    public function teste($var){
+        $teste = DB::select("SELECT descricao from servicos WHERE idServico = ".$var);
+        return $teste;
     }
  
 

@@ -11,16 +11,6 @@
         <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
-        @if(session('solicitacao'))
-            <script>
-            swal({
-            title: "Ops!",
-            text: "Você não possui solicitações de serviços ou denúncias!",
-            icon: "info",
-        });
-            </script>
-            
-            @else
         <div class="container-fluid">
 
             <!-- ====TOPO==== -->
@@ -37,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 login">
-                    Login &nbsp;&nbsp;&nbsp; <img src="{{asset('img/security.png')}}" alt="Login">
+                    Olá {{substr(strtolower(Auth::user()->nome),0,strpos(strtolower(Auth::user()->nome),' '))}} &nbsp;&nbsp;&nbsp; <a href="{{route('logout')}}" title="Sair" ><img src="{{asset('images/security.png')}}" alt="Login"> </a>    
                 </div>
             </div>
 
@@ -56,72 +46,49 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    ID
+                                                    Protocolo
                                                 </th>
                                                 <th>
-                                                    Nome do solicitante
+                                                    Data
+                                                </th>
+                                                <th>
+                                                    Tipo Reclamação
                                                 </th>
                                                 <th>
                                                     Status
                                                 </th>
+                                                <th>
+                                                    Ver
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="active">
+                                            @foreach($da as $data)
+                                            <tr class="@if($data->status_servicos == 1)danger @if($data->status_servicos == 2) warning @if($data->status_servicos == 3)success @if($data->status_servicos == 4)danger @endif @endif @endif @endif">
                                                 <td>
-                                                    1
+                                                    {{$data->protocolo}}
+
                                                 </td>
                                                 <td>
-                                                    João da Silva
+                                                    {{date('d/m/Y', strtotime($data->created_at))}}
+
                                                 </td>
                                                 <td>
-                                                    Aguardando
-                                                </td>
-                                            </tr>
-                                            <tr class="success">
-                                                <td>
-                                                    2
+                                                    {{$data->servicos->descricao}}
                                                 </td>
                                                 <td>
-                                                    Cleberson Soares
-                                                </td>
+                                                    @if($data->status_servicos == 1) Em análise @else @if($data->status_servicos == 2) Em execução @else @if($data->status_servicos == 3) Serviço Finalizado @else @if($data->status_servicos == 4) Serviço Reaberto @endif @endif @endif @endif
+
+                                                </td>  
                                                 <td>
-                                                    Finalizado
+                                                    <a href="{{action('CidadaoController@resultadoDetalhado2',$data->idSolicitacao_Servicos)}}">
+                                                    <button type="button" class="btn btn-default" aria-label="Alinhar na esquerda">
+                                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                    </button>
+                                                    </a>
                                                 </td>
-                                            </tr>
-                                            <tr class="warning">
-                                                <td>
-                                                    12
-                                                </td>
-                                                <td>
-                                                    Cleiton Silva
-                                                </td>
-                                                <td>
-                                                    Em processo
-                                                </td>
-                                            </tr>
-                                            <tr class="success">
-                                                <td>
-                                                    3
-                                                </td>
-                                                <td>
-                                                    Eduardo Vieira
-                                                </td>
-                                                <td>
-                                                    Finalizado
-                                                </td>
-                                            </tr>
-                                            <tr class="active">
-                                                <td>
-                                                    4
-                                                </td>
-                                                <td>
-                                                    William Pinheiro
-                                                </td>
-                                                <td>
-                                                    Aguardando
-                                                </td>
-                                            </tr>
+                                                
+                                                @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -132,7 +99,7 @@
             </div>
         </div>
     </div>
-    @endif
+
     <script href="{{asset('js/bootstrap.min.js')}}"></script>
     <script href="{{asset('js/jquery.min.js')}}"></script>
 </body>
