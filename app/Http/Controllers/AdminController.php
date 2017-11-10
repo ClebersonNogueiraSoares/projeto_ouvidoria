@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Secretaria;
-use Auth;
+use App\Solicitacao_Servico;
 
 class AdminController extends Controller {
 
@@ -14,6 +13,7 @@ class AdminController extends Controller {
         $this->middleware('auth');
     }
 
+    //Métodos do ADM do módulo de gestão de  usuários
     public function painel() {
         return view('adm.administrador');
     }
@@ -28,7 +28,6 @@ class AdminController extends Controller {
 
     public function getUsers() {
         $request = request()->all();
-
         if (isset($request['tipo_filtro']) && $request['tipo_filtro'] != null) {
             $coluna = $request['tipo_filtro'];
             $valor = $request['campo'];
@@ -45,17 +44,18 @@ class AdminController extends Controller {
 
     public function editar() {
         $request = request()->all();
-        if (!empty($request['alterar'])){
-           // $usuario = DB::select("SELECT *FROM users WHERE id = " . $request['alterar']);
+        if (!empty($request['alterar'])) {
+            // $usuario = DB::select("SELECT *FROM users WHERE id = " . $request['alterar']);
             $usuario = User::all();
-            $usuario = $usuario->whereIn('id',$request['alterar']);
-            foreach($usuario as $da){
-                 return view('adm.administrador_usuarios_resultado_detalhado')->with('data', $da);
-            }  
+            $usuario = $usuario->whereIn('id', $request['alterar']);
+            foreach ($usuario as $da) {
+                return view('adm.administrador_usuarios_resultado_detalhado')->with('data', $da);
+            }
         }
         return redirect()->action('AdminController@getUsers')->withInput();
     }
-    public function update(){
+
+    public function update() {
         $request = request()->all();
         $update = User::find($request['buscar']);
         $update->nome = $request['nome'];
@@ -68,19 +68,15 @@ class AdminController extends Controller {
         $update->tel_fixo = $request['tel_fixo'];
         $update->tel_cel = $request['tel_cel'];
         $update->idTipo_usuario = $request['nivel-acesso'];
-        
-        if(!empty($request['nivel-acesso']) && $request['nivel-acesso'] == 2){
-             $secretario = Secretaria::find($request['secretario']);
-             $secretario->secretario = Auth::user()->nome;
-             $update->save();
-             $secretario->save();
-             return redirect()->action('AdminController@admUsers')->with('update', ' ');
+        if (!empty($request['nivel-acesso']) && $request['nivel-acesso'] == 2) {
+            $secretario = Secretaria::find($request['secretario']);
+            $secretario->secretario = $request['nome'];
+            $update->save();
+            $secretario->save();
+            return redirect()->action('AdminController@admUsers')->with('update', ' ');
         }
-       $update->save();
-      return redirect()->action('AdminController@admUsers')->with('update', ' ');
-       
-        
-        
+        $update->save();
+        return redirect()->action('AdminController@admUsers')->with('update', ' ');
     }
 
     public function delete() {
@@ -89,4 +85,32 @@ class AdminController extends Controller {
         return redirect()->action('AdminController@getUsers')->withInput();
     }
 
+    //Métodos da ADM do módulo de gestão de serviços
+    public function servicoDenuncia() {
+        return view('adm.administrador_servicos_denuncias');
+    }
+
+    public function getDenuncias() {
+        $denuncias = Solicitacao_Servico::all()->whereIn('idTipo_requisicao', 2);
+        if($denuncias->count() == 0){
+            return redirect()->action('AdminController@servicoDenuncia')->with('denuncia','vazia');
+        }
+        return view('adm.administrador_denuncias')->with('data', $denuncias);
+    }
+
+    public function detalharDenuncia() {
+       $request = request()->all();
+        $solicitacao = Solicitacao_Servico::all();
+        $solicitacao = $solicitacao->whereIn('idSolicitacao_Servicos',$request['detalhar'] );
+        foreach ($solicitacao as $a) {
+            return view('adm.resultado-detalhado')->with('data', $a);
+        }
+        
+    }
+    public function excluirDenuncia(){
+      $request = request()->all();
+        $delete = DB::delete('DELETE FROM solicitacao__servicos WHERE idSolicitacao_Servicos = ' . $request['excluir']);
+        return redirect()->action('AdminController@servicoDenuncia')->with('denuncia','deletada');
+    }
+    
 }

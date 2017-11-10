@@ -10,9 +10,10 @@
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <script src =" https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+         <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
          <script src="{{asset('js/jquery.mask.min.js')}}"></script>
          <script src="{{asset('js/validator.min.js')}}"></script>
-        <script>
+         <script>
             $(document).ready(function () {
                 $('#telefoneFixo').mask('(00) 0000-0000');
                 $('#telefoneCelular').mask('(00) 00000-0000');
@@ -28,7 +29,8 @@
                 })
                 return false
             }
-        </script>
+            </script>
+            
     
     </head>
     <body>

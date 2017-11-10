@@ -62,16 +62,7 @@
                         <div class="col-sm-6 col-xs-4">
                             <div class="top-number"><p><i class="fa fa-phone-square"></i>  +55 15 3259-8400</p></div>
                         </div>
-                        <div class="col-sm-6 col-xs-8">
-                            <div class="social">
-                                <div class="search">
-                                    <form role="form">Buscar
-                                        <input type="text" class="search-form" autocomplete="off">
-                                        <i class="fa fa-search"></i>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div><!--/.container-->
             </div><!--/.top-bar-->

@@ -49,6 +49,7 @@ Route::post('/buscar/protocolo','OuvidoriaController@buscarProtocolo');
      Route::post('reabrir-protocolo/{data}','CidadaoController@reabrirProtocolo');
      Route::post('enviado{data}','CidadaoController@move');
  });
+ //Rotas de gestão de usuários
  Route::group(['prefix' => 'administrador', 'middleware' => 'admin'],function(){
      Route::get('/','AdminController@painel');
      Route::get('administracao-de-usuarios','AdminController@admUsers');
@@ -57,5 +58,14 @@ Route::post('/buscar/protocolo','OuvidoriaController@buscarProtocolo');
      Route::post('editar-usuario','AdminController@editar');
      Route::post('update-usuario','AdminController@update');
      Route::post('deletar-usuario/{da}','AdminController@delete');
+ });
+ //Rotas de gestão de serviços
+ Route::group(['prefix' => 'administrador/solicitacoes', 'middleware' => 'admin'],function(){
+     Route::get('/','AdminController@servicoDenuncia');
+     Route::get('denuncias','AdminController@getDenuncias');
+     Route::post('denuncia/detalhada','AdminController@detalharDenuncia');
+     Route::post('denuncia/excluida','AdminController@excluirDenuncia');
+     
      
  });
+ 

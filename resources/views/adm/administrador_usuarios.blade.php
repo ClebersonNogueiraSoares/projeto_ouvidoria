@@ -91,7 +91,7 @@
                                                 {{csrf_field()}}
                                                 <div class="col-md-5">
                                                     <label for="tipo_requisicao">Tipo de filtro</label>
-                                                    <select  name="tipo_filtro" id="tipo_filtro" class="form-control" required>
+                                                    <select  name="tipo_filtro" id="tipo_filtro" class="form-control"  required>
                                                         <option value="" selected disabled="">Escolha o filtro</option>
                                                         <option value="nome">Nome</option>
                                                         <option value="email">E-mail</option>
@@ -128,6 +128,11 @@
                 </div>
             </div>
         </div>
+        <script>
+            function select(){
+                
+            }
+        </script>
         <script>
   
             document.getElementById('voltar').onclick = function () {

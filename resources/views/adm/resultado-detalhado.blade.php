@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-        <title>Painel do Municipe</title>
+        <title>Denúncia detalhada</title>
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <script src =" https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
@@ -28,13 +28,13 @@
                     </div>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 login">
-                Olá {{substr(strtolower(Auth::user()->nome),0,strpos(strtolower(Auth::user()->nome),' '))}} &nbsp;&nbsp;&nbsp; <a href="{{route('logout')}}" title="Sair" ><img src="{{asset('images/security.png')}}" alt="Login"> </a>    
+                    Olá {{substr(strtolower(Auth::user()->nome),0,strpos(strtolower(Auth::user()->nome),' '))}} &nbsp;&nbsp;&nbsp; <a href="{{route('logout')}}" title="Sair" ><img src="{{asset('images/security.png')}}" alt="Login"> </a>    
                 </div>
             </div>
-{{$data->users->nome}}
- <!-- ====CONTEÚDO PRINCIPAL==== -->
+            
+            <!-- ====CONTEÚDO PRINCIPAL==== -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 main">
-                <h2>Área do Munícipe</h2>
+                <h2>Área do Administrador</h2>
                 <div class="content">
                     <div class="box">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 box-top">
@@ -44,7 +44,7 @@
                             <section  class="container login box-form">
                                 <div class="col-md-8 col-md-offset-2 well">
                                     <h4>Detalhamento da Solicitação</h4>
-                                     <div class="row">
+                                    <div class="row">
                                         <div class="col-md-3"><strong>Número de protocolo:</strong></div>
                                         <div class="col-md-5">{{$data->protocolo}}</div>
                                     </div>
@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="col-md-3"><strong>Status do Serviço:</strong></div>
                                         <div class="col-md-5"> @if($data->status_servicos == 1) Em análise @else @if($data->status_servicos == 2) Em execução @else @if($data->status_servicos == 3) Serviço Finalizado @else @if($data->status_servicos == 4) Serviço Reaberto @endif @endif @endif @endif </div>
-                                        
+
                                     </div>
 
                                     <div class="row">
@@ -93,23 +93,24 @@
 
                                         </div>
                                     </div>
-
-                                    <div class="control-group box-btn col-md-12">
-                                        <form name="reabrir-protocolo" class="col-md-6" method="post" action="{{action('CidadaoController@reabrirProtocolo',$data->idSolicitacao_Servicos)}}" onsubmit="check(event)">
-                                             {{csrf_field()}}
-                                        <button type="submit" name="buscar" class="btn btn-primary" id="imprimir">
-                                            <span class="glyphicon glyphicon-send"></span>
-                                            Imprimir
-                                        </button> &nbsp;&nbsp;
-                                        <button type="submit" name="reabrir-protocolo" class="btn btn-primary">
-                                            <span class="glyphicon glyphicon-send"></span>
-                                            Reabrir solicitação
-                                        </button>
-                                        </form>
-                                       <button type=""  name="back" id="voltar" class="btn btn-primary " >
+                                   <div class="control-group box-btn col-md-12">
+                                        <form name="denuncia" class="col-md-6" method="post" action="{{action('AdminController@excluirDenuncia')}}">
+                                            {{csrf_field()}}
+                                            <button type="submit" name="excluir" value="{{$data->idSolicitacao_Servicos}}" class="btn btn-primary btn-danger" id="excluir">
                                                 <span class="glyphicon glyphicon-send"></span>
-                                                Voltar
+                                                Excluir
                                             </button>
+                                            
+                                        </form>
+                                        <button type=""  name="back" id="voltar" class="btn btn-primary  >
+                                            <span class="glyphicon glyphicon-send" ></span>
+                                            Voltar
+                                        </button>
+                                       <button type="submit" name="buscar" class="btn btn-primary" id="imprimir">
+                                                <span class="glyphicon glyphicon-send"></span>
+                                                Imprimir
+                                            </button> &nbsp;&nbsp;
+                                        
                                     </div>
                                 </div>
                             </section>
@@ -119,23 +120,20 @@
             </div>
         </div>
     </div>
-     <script>
-            document.getElementById('voltar').onclick = function () {
-           history.go(-1);
+    <script>
+        document.getElementById('voltar').onclick = function () {
+            history.go(-1);
 
         };
-       </script>
-   <script>
+    </script>
+    <script>
         document.getElementById('imprimir').onclick = function () {
             window.print();
             history.back();
 
-        };   
+        };
     </script>
-    
-           
     <script href="{{asset('js/bootstrap.min.js')}}"></script>
     <script href="{{asset('js/jquery.min.js')}}"></script>
 </body>
 </html>
-<!--//'storage/'.substr(strrchr($data->anexos, "/"), 1)-->
