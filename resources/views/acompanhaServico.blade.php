@@ -15,7 +15,7 @@
         @endif
     <div class="col-md-8 col-md-offset-2"> 
 
-        <form class="form-horizontal well" method="post"action="/buscar/protocolo">
+        <form class="form-horizontal well" method="post"action="{{action('OuvidoriaController@buscarProtocolo')}}">
             {{csrf_field()}}
             <fieldset>
                 <legend>Consultar protocolo</legend>

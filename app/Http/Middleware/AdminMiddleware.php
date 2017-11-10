@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-
-class CidadaoMiddleware {
-
+class AdminMiddleware
+{
     /**
      * Handle an incoming request.
      *
@@ -17,7 +16,7 @@ class CidadaoMiddleware {
     public function handle($request, Closure $next) {
         
         if (Auth::check()) {
-            if (Auth::user()->idTipo_usuario != 1) {
+            if (Auth::user()->idTipo_usuario != 5) {
                 echo "<script>
         swal({
             title: 'Desculpe!',

@@ -60,6 +60,11 @@
                                                 <button type="submit" name="cadastrar" class="btn btn-primary">
                                                     <span class="glyphicon glyphicon-send"></span>
                                                     Reabrir protocolo
+                                                </button>&nbsp;&nbsp;
+                                                </form>
+                                                <button type=""  name="back" id="voltar" class="btn btn-primary ">
+                                                    <span class="glyphicon glyphicon-send"></span>
+                                                    Voltar
                                                 </button>
                                             </div>
                                             </section>
@@ -70,15 +75,21 @@
                 </div>
             </div>
             <script>
+            document.getElementById('voltar').onclick = function () {
+           history.go(-1);
+
+        };
+       </script>
+            <script>
                 function confirm(event) {
                     swal({
                         title: "Sucesso!",
                         text: "Sua solicitação foi enviada para análise!",
                         icon: "success",
-                    }).then(function (){
-            form.submit();
-        });
-        event.preventDefault();
+                    }).then(function () {
+                        form.submit();
+                    });
+                    event.preventDefault();
                 }
             </script>
             <script href="{{asset('js/bootstrap.min.js')}}"></script>

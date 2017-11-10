@@ -49,7 +49,7 @@ class UsuarioTableSeeder extends Seeder {
         $u = '123456';
         $u = md5($u);
 
-        User::create(['nome' => 'Eduardo', 'sexo' => 'Masculino', 'tel_fixo' => '(15)99865-3333', 'tel_cel' => '(15)998754789', 'cep' => '654231789', 'rua' => 'onze de agosto', 'numero' => '555', 'bairro' => 'Centro', 'cidade' => 'Tatui', 'email' => 'edua@hotmail.com', 'password' => "{$u}", 'idCidadao' => '1', 'idTipo_usuario' => '1']);
+        User::create(['nome' => 'Eduardo', 'sexo' => 'Masculino','cpf' => '22222222222','tel_fixo' => '(15)99865-3333', 'tel_cel' => '(15)998754789', 'cep' => '654231789', 'rua' => 'onze de agosto', 'numero' => '555', 'bairro' => 'Centro', 'cidade' => 'Tatui', 'email' => 'edua@hotmail.com', 'password' => "{$u}", 'idCidadao' => '1', 'idTipo_usuario' => '1']);
     }
 
 }

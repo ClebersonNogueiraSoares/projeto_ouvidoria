@@ -31,11 +31,9 @@
                     <div class="control-group controls controls-row">
                         <label for="sexo">Sexo</label>
                         <select name="sexo" class="form-control">
-                            <option value="masculino">Masculino</option>
+                            <option value="masculino" selected>Masculino</option>
                             <option value="feminino">Feminino</option>
-
                         </select>
-
                     </div>
                 </div>
             </div>

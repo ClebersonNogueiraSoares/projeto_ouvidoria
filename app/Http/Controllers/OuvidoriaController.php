@@ -64,8 +64,8 @@ class OuvidoriaController extends Controller {
         return $this->criarHtml($solicitacao->last());
     }
 
-    public function criarHtml($data) {
-        return view('informacoes-da-solicitacao')->with('data', $data);
+    public function criarHtml($da) {
+        return view('informacoes-da-solicitacao')->with('data', $da);
     }
 
     public function move(Request $request) {
@@ -97,7 +97,7 @@ class OuvidoriaController extends Controller {
         $data = $protocolo->whereIn('protocolo', $data);
         if ($count > 0) {
             foreach ($data as $a) {
-                return view('resultado-detalhado')->with('data', $a);
+                return view('informacoes-da-solicitacao')->with('data', $a);
             }
         } else {
             return redirect()->action('OuvidoriaController@acompanhaServico')->with('protocolo','   ');

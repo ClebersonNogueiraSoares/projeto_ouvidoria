@@ -16,7 +16,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'nome', 'email','email_token', 'password', 'nome', 'sexo', 'cpf', 'tel_fixo', 'tel_cel', 'cep', 'rua', 'numero', 'bairro', 'cidade'
+        'nome', 'email','email_token', 'password', 'sexo', 'cpf', 'tel_fixo', 'tel_cel', 'cep', 'rua', 'numero', 'bairro', 'cidade'
     ];
 
     /**
@@ -33,7 +33,7 @@ class User extends Authenticatable {
     }
 
     public function tipo__usuarios() {
-        return $this->belongsTo('App\Tipo_Usuario');
+        return $this->belongsTo('App\Tipo_Usuario','idTipo_usuario');
     }
 
     public function solicitacao__servicos() {

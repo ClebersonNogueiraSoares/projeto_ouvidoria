@@ -7,7 +7,7 @@ use App\Solicitacao_Servico;
 use App\Local;
 use Auth;
 use Symfony\Component\HttpFoundation\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class CidadaoController extends Controller {
 
@@ -150,8 +150,8 @@ class CidadaoController extends Controller {
         $solicitacao = Solicitacao_Servico::all();
         return $this->detalhes($solicitacao->last());
     }
-    public function detalhes($data) {
-        return view('cidadao.resultado-detalhado', compact($data));
+    public function detalhes($dat) {
+        return view('cidadao.resultado-detalhado')->with('data',$dat);
     }
 
 }

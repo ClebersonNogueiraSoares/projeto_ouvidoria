@@ -6,7 +6,7 @@
     <h1 class="text-center">REQUISIÇÃO DE SERVIÇOS OU DENÚNCIA - FORMULÁRIO</h1>
 
     <div class="col-md-8 col-md-offset-2 well">
-        <form class="form-horizontal"  name="form" id="form" method="post" action="/cadastro/servico" enctype="multipart/form-data" onsubmit="teste(event)">
+        <form class="form-horizontal"  name="form" id="form" method="post" action="{{action('OuvidoriaController@move')}}" enctype="multipart/form-data" onsubmit="teste(event)">
             {{csrf_field()}}
             <div class="row">
                 <div class="col-md-9">

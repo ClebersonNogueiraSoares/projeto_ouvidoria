@@ -28,6 +28,7 @@
                 $('#telefoneFixo').mask('(00) 0000-0000');
                 $('#telefoneCelular').mask('(00) 00000-0000');
                 $('#postal_code').mask('00000-000');
+                $('#cpf').mask('000.000.000-00');
             })
 
             function confirmacao() {

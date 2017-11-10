@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration {
             $table->increments('id');
             $table->string('nome', 45);
             $table->string('sexo', 10);
+            $table->string('cpf', 15);
             $table->string('tel_fixo', 15);
             $table->string('tel_cel', 15);
             $table->string('cep', 15);

@@ -49,3 +49,13 @@ Route::post('/buscar/protocolo','OuvidoriaController@buscarProtocolo');
      Route::post('reabrir-protocolo/{data}','CidadaoController@reabrirProtocolo');
      Route::post('enviado{data}','CidadaoController@move');
  });
+ Route::group(['prefix' => 'administrador', 'middleware' => 'admin'],function(){
+     Route::get('/','AdminController@painel');
+     Route::get('administracao-de-usuarios','AdminController@admUsers');
+     Route::get('painel-de-controle-de-usuarios','AdminController@getUsers');
+     Route::post('painel-de-controle-de-usuarios','AdminController@getUsers');
+     Route::post('editar-usuario','AdminController@editar');
+     Route::post('update-usuario','AdminController@update');
+     Route::post('deletar-usuario/{da}','AdminController@delete');
+     
+ });

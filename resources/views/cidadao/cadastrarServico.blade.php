@@ -121,7 +121,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                  <label for="tipo_requisicao">Tipo de requisição</label>
-                                                    <select  name="tipo_requisicao" id="tipo_requisicao" class="form-control" onchange="mostrar_protocolo()"required>
+                                                    <select  name="tipo_requisicao" id="tipo_requisicao" class="form-control" onchange="mostrar_protocolo()" required>
                                                     <option value="" selected disabled="">Selecione o tipo de requisição</option>
                                                     <option value="1">Serviço</option>
                                                     <option value="2">Denúncia</option>  
@@ -273,6 +273,10 @@
                                                 <span class="glyphicon glyphicon-send"></span>
                                                 Cadastrar
                                             </button>
+                                            <button type="submit" name="back" id="voltar" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-send"></span>
+                                                Voltar
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -282,7 +286,12 @@
                 </div>
             </div>
         </div>
-        
+        <script>
+            document.getElementById('voltar').onclick = function () {
+            history.back();
+
+        };
+       </script>
 <script>
 
     var placeSearch, autocomplete;
@@ -414,15 +423,17 @@ async defer></script>
     function teste(event){
         swal({
             title: "Solicitação realizada com sucesso!",
-            text: "Click em imprimir para obter o seu número de protocolo que será necessário para acompanhamento!",
+            text: "Click em OK para visualizar detalhes de sua solicitação e imprimir",
             icon: "success",
-            button: "Imprimir",
+            button: "OK",
         }).then(function (){
             form.submit();
         });
         event.preventDefault();
     }
+    
 </script>
+
         <script href="{{asset('js/bootstrap.min.js')}}"></script>
         <script href="{{asset('js/jquery.min.js')}}"></script>
          <script src="{{asset('js/bootstrap.min.js')}}"></script>
