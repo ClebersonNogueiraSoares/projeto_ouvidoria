@@ -71,25 +71,27 @@
                                     <hr>
 
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="sercretaria">Filtrar por Secretaria</label>
-                                            <select  name="tipo_secretaria" id="tipo_secretaria" class="form-control" onchange="mostrar_secretaria()">
-                                                <option value="" selected disabled="">Selecione a secretaria</option>
-                                                <option value="1">Educação</option>
-                                                <option value="2">Fiscalização</option>
-                                                <option value="3">Meio ambiente</option>
-                                                <option value="4">Obras</option>
-                                                <option value="5">Saúde</option>
-                                                <option value="6">Segurança</option>
-                                                <option value="7">Trânsito e vias</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="control-group controls controls-row">
-                                                <label for="numero">Buscar por endereço</label>
-                                                <input type="text" name="endereco" value="" class="form-control" id="endereco"  placeholder="Digite o endereço"  title="endereco">
+                                        <form method="POST" name="fi" action="{{action('AdminController@filtroBusca')}}">
+                                            {{csrf_field()}}
+                                            <div class="col-md-4">
+                                                <label for="sercretaria">Filtrar por Secretaria</label>
+                                                <select  name="tipo_secretaria" id="tipo_secretaria" class="form-control" >
+                                                    <option value="" selected disabled="">Selecione a secretaria</option>
+                                                    <option value="1">Educação</option>
+                                                    <option value="2">Fiscalização</option>
+                                                    <option value="3">Meio ambiente</option>
+                                                    <option value="4">Obras</option>
+                                                    <option value="5">Saúde</option>
+                                                    <option value="6">Segurança</option>
+                                                    <option value="7">Trânsito e vias</option>
+                                                </select>
                                             </div>
-                                        </div>
+                                            <div class="col-md-8">
+                                                <div class="control-group controls controls-row">
+                                                    <label for="numero">Buscar por endereço</label>
+                                                    <input type="text" name="endereco" value="" class="form-control" id="endereco"  placeholder="Digite o endereço"  title="endereco">
+                                                </div>
+                                            </div>
                                     </div>
                                     <hr>
 
@@ -103,7 +105,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="sercretaria">Filtrar por status</label>
-                                            <select name="tipo_secretaria" id="tipo_secretaria" class="form-control" onchange="mostrar_secretaria()">
+                                            <select name="filtro_status" id="filtro_status"  class="form-control">
+                                                <option value="" selected disabled="">Selecione o status do serviço</option>
                                                 <option value="1">Aguardando</option>
                                                 <option value="2">Em processo</option>
                                                 <option value="3">Finalizado</option>
@@ -113,10 +116,11 @@
 
                                     <hr>
                                     <div class="control-group col-md-2">
-                                        <button type="submit" name="Cadastrar" class="btn btn-primary">
+                                        <button type="submit" name="filtrar" value="filtro"class="btn btn-primary">
                                             <span class="glyphicon glyphicon-send"></span>
                                             Buscar
                                         </button>
+                                        </form>
                                     </div>
                                     <div class="col-md-10">
                                         <button type=""  name="back" id="voltar" class="btn btn-primary ">
@@ -135,7 +139,7 @@
         </div>
         <script>
             document.getElementById('voltar').onclick = function () {
-               window.history.back()
+                window.history.back()
 
             };
         </script>

@@ -34,10 +34,7 @@ class Solicitacao_Servico extends Model {
                             . ' WHERE solicitacao__servicos.idSolicitacao_Servicos = (SELECT MAX(idSolicitacao_Servicos) from solicitacao__servicos)');
             foreach($teste as $s):
                 return $s;
-            endforeach;
-            
-            
-           
+            endforeach;  
     }
     public function teste($var){
         $teste = DB::select("SELECT descricao from servicos WHERE idServico = ".$var);

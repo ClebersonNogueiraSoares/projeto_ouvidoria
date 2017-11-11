@@ -68,6 +68,7 @@ Route::post('/buscar/protocolo','OuvidoriaController@buscarProtocolo');
      Route::get('painel-servicos','AdminController@servicos');
      Route::post('todos-servicos','AdminController@getServicoAll');
      Route::post('servicos/vencidos','AdminController@getServicoVencido');
+     Route::post('buscar/servicos','AdminController@filtroBusca');
      
      
  });
