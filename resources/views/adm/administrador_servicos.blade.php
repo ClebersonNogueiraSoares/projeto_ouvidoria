@@ -11,7 +11,24 @@
         <script src =" https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
     </head>
     <body>
-
+ @if(session('nenhum') && session('nenhum') == "resultado")
+             <script>
+        swal({
+            title: "Ops!",
+            text: "Não há serviços em aberto de acordo com sua pesquisa!",
+            icon: "info",
+        });
+        </script>
+        @endif
+ @if(session('campo') && session('campo') == "vazio")
+             <script>
+        swal({
+            title: "Ops!",
+            text: "Por favor preencha um campo para continuar a consulta!",
+            icon: "info",
+        });
+        </script>
+        @endif
         <div class="container-fluid">
 
             <!-- ====TOPO==== -->
@@ -89,7 +106,7 @@
                                             <div class="col-md-8">
                                                 <div class="control-group controls controls-row">
                                                     <label for="numero">Buscar por endereço</label>
-                                                    <input type="text" name="endereco" value="" class="form-control" id="endereco"  placeholder="Digite o endereço"  title="endereco">
+                                                    <input type="text" name="endereco" value="" class="form-control" id="route"  placeholder="Digite o endereço"  title="endereco">
                                                 </div>
                                             </div>
                                     </div>
@@ -143,6 +160,55 @@
 
             };
         </script>
+        <script>
+
+    var placeSearch, autocomplete;
+    var componentForm = {
+        route: 'long_name',
+        
+    };
+
+    function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */(document.getElementById('route')),
+                {type: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        for (var component in componentForm) {
+            document.getElementById(component).value = '';
+            document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+            var addressType = place.address_components[i].types[0];
+            if (componentForm[addressType]) {
+                var val = place.address_components[i][componentForm[addressType]];
+                document.getElementById(addressType).value = val;
+                document.getElementById('place_id').value = place.place_id;
+                
+                //document.getElementById(component).value = val;
+            }
+        }
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Mg1b6X5MFnUVnYHm2njnV_IMa_jP-vQ&libraries=places&callback=initAutocomplete"
+async defer></script>
         <script href="{{asset('js/bootstrap.min.js')}}"></script>
         <script href="{{asset('js/jquery.min.js')}}"></script>
     </body>

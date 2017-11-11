@@ -50,7 +50,7 @@
                                                     Protocolo
                                                 </th>
                                                 <th>
-                                                    Descrição da denúncia.
+                                                    Descrição do serviço.
                                                 </th>
                                             </tr>
                                         </thead>

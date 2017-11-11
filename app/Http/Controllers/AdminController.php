@@ -147,24 +147,32 @@ class AdminController extends Controller {
         //dd($request['protocolo
                 if(!empty($request['protocolo'])){
                     $filtro = Solicitacao_Servico::all()->where('protocolo','=', $request['protocolo']);
-//                    $filtro = DB::select("select *from solicitacao__servicos where protocolo = ".(string)$request['protocolo']);
-                    if($filtro == null){
-                        return redirect()->action('AdminController@servicos')->with('nenhum','resultado');
+//                    
+                    if($filtro->count() > 0){
+                       return view('adm.filtroDetalhado')->with('data', $filtro);
                     }
-                        return view('adm.filtroDetalhado')->with('data', $filtro);
+                        
+                         return redirect()->action('AdminController@servicos')->with('nenhum','resultado');
                 }
                 
                 /*
                  * SELECT solicitacao__servicos.protocolo,local.rua from solicitacao__servicos INNER JOIN local ON solicitacao__servicos.idLocal = local.idLocal WHERE solicitacao__servicos.protocolo = "1509837072/17";
                  */
                 if(!empty($request['endereco'])){
-                    $filtro = DB::select('SELECT *from solicitacao__servicos INNER JOIN local ON solicitacao__servicos.idLocal = local.idLocal INNER JOIN servicos ON solicitacao__servicos.idServico = servicos.idServico   WHERE local.rua = "Rua Simão Bolívar";');           
+                     $filtro = DB::select('SELECT  solicitacao__servicos.idSolicitacao_Servicos,solicitacao__servicos.protocolo,servicos.descricao from solicitacao__servicos '
+                    . 'INNER JOIN tipo__requisicao ON solicitacao__servicos.idTipo_requisicao = tipo__requisicao.idTipo_requisicao'
+                    . ' INNER JOIN users ON solicitacao__servicos.idUsuario = users.id'
+                    . ' INNER JOIN servicos ON solicitacao__servicos.idServico = servicos.idServico'
+                    . ' INNER JOIN secretarias ON secretarias.idSecretaria = servicos.idSecretaria'
+                    . ' INNER JOIN local ON solicitacao__servicos.idLocal = local.idLocal'
+                    . ' WHERE local.rua ="'.$request['endereco'].'"');
+             
                     if($filtro == null){
                          return redirect()->action('AdminController@servicos')->with('nenhum','resultado');
                     }
                         return view('adm.filtroDetalhado2')->with('data',$filtro);
                 }
-        
+       
        // dd($request);
         if(!empty($request['tipo_secretaria']) && !empty($request['filtro_status'])){
             $filtro = DB::select('SELECT solicitacao__servicos.idSolicitacao_Servicos,solicitacao__servicos.protocolo,servicos.descricao from solicitacao__servicos'
