@@ -63,8 +63,11 @@ Route::post('/buscar/protocolo','OuvidoriaController@buscarProtocolo');
  Route::group(['prefix' => 'administrador/solicitacoes', 'middleware' => 'admin'],function(){
      Route::get('/','AdminController@servicoDenuncia');
      Route::get('denuncias','AdminController@getDenuncias');
-     Route::post('denuncia/detalhada','AdminController@detalharDenuncia');
+     Route::post('detalhes','AdminController@detalharDenuncia');
      Route::post('denuncia/excluida','AdminController@excluirDenuncia');
+     Route::get('painel-servicos','AdminController@servicos');
+     Route::post('todos-servicos','AdminController@getServicoAll');
+     Route::post('servicos/vencidos','AdminController@getServicoVencido');
      
      
  });

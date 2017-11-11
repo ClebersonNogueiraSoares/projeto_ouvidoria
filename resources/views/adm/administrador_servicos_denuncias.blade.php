@@ -12,7 +12,7 @@
               <script src =" https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
         </head>
         <body>
-             @if(session('denuncia')=="vazia")
+             @if(session('denuncia') && session('denuncia') == "vazia")
              <script>
         swal({
             title: "Desculpe!",
@@ -21,7 +21,7 @@
         });
         </script>
         @endif
-            @if(session('denuncia')=="deletada")
+            @if(session('denuncia') && session('denuncia')== "deletada")
              <script>
         swal({
             title: "Sucesso!",
@@ -30,27 +30,24 @@
         });
         </script>
         @endif
-
-            <div class="container-fluid">
-
-                <!-- ====TOPO==== -->
-                <div class="navbar-fixed-top col-xs-12 col-sm-12 col-md-12 col-lg-12 topo">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        AdminCWCE
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 buscar">
-                        <div class="form-group">
-                            <label for="input" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                                <input type="search" name="Buscar" id="input" class="form-control" value="" title="Botão de busca" placeholder="Buscar">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 login">
-                                          Olá {{substr(strtolower(Auth::user()->nome),0,strpos(strtolower(Auth::user()->nome),' '))}} &nbsp;&nbsp;&nbsp; <a href="{{route('logout')}}" title="Sair" ><img src="{{asset('images/security.png')}}" alt="Login"> </a>
-
-                    </div>
-                </div>
+            @if(session('servico') && session('servico') == "vazia")
+             <script>
+        swal({
+            title: "Ops!",
+            text: "Não há serviços em aberto!",
+            icon: "info",
+        });
+        </script>
+        @endif
+            @if(session('denuncia' )&& session('denuncia') == "deletada")
+             <script>
+        swal({
+            title: "Sucesso!",
+            text: "Serviço deletado com sucesso!",
+            icon: "success",
+        });
+        </script>
+        @endif
 
                 <!-- ====CONTEÚDO PRINCIPAL==== -->
                 <div class="navbar-fixed-top col-xs-12 col-sm-12 col-md-12 col-lg-12 topo">
@@ -91,7 +88,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="administrador_servicos.html">
+                                                <a href="{{action('AdminController@servicos')}}">
                                                     <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
                                                     <p><br />Serviços</p>
                                                 </a>

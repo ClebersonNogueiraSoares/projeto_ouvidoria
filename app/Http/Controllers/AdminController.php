@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Secretaria;
 use App\Solicitacao_Servico;
+use Carbon;
 
 class AdminController extends Controller {
 
@@ -86,10 +87,13 @@ class AdminController extends Controller {
     }
 
     //Métodos da ADM do módulo de gestão de serviços
+    
+    
     public function servicoDenuncia() {
         return view('adm.administrador_servicos_denuncias');
     }
 
+        //Denúncias
     public function getDenuncias() {
         $denuncias = Solicitacao_Servico::all()->whereIn('idTipo_requisicao', 2);
         if($denuncias->count() == 0){
@@ -113,4 +117,28 @@ class AdminController extends Controller {
         return redirect()->action('AdminController@servicoDenuncia')->with('denuncia','deletada');
     }
     
+    //Serviços
+    
+    public function servicos(){
+        return view('adm.administrador_servicos');
+    }
+    public function getServicoAll(){
+        $servicos = Solicitacao_Servico::all()->whereIn('idTipo_requisicao', 1);
+        if($servicos->count() == 0){
+            return redirect()->action('AdminController@servicoDenuncia')->with('servico','vazia');
+        }
+        return view('adm.administrador_servicos_todos')->with('data', $servicos);
+    }
+    public function getServicoVencido(){
+        $date = \Carbon\Carbon::now()->subDays(10)->format('Y-m-d H:i:s');
+        $results = Solicitacao_Servico::where('created_at','<=',$date)->get();
+        $re = Solicitacao_Servico::where('data_final','<=',$date)->get();
+        if($results){
+             return view('adm.administrador_servicos_vencidos')->with('data', $results);
+        }else if($re){
+            return view('adm.administrador_servicos_vencidos')->with('data', $re);
+        }
+        return redirect()->action('AdminController@servicoDenuncia')->with('servico','vencido');
+        
+    }
 }

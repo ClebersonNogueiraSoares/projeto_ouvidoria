@@ -19,6 +19,7 @@ class CreateSolicitacaoServicosTable extends Migration
             $table->string('anexos',255);
             $table->integer('status_servicos');
             $table->string('observacao',255);
+            $table->timestamps('data_final');
             $table->integer('idServico')->unsigned();
             $table->integer('idTipo_requisicao')->unsigned();
             $table->integer('idUsuario')->unsigned();
@@ -29,6 +30,7 @@ class CreateSolicitacaoServicosTable extends Migration
             $table->foreign('idUsuario')->references('id')->on('usuarios');
             $table->foreign('idCidadao')->references('idCidadao')->on('cidadaos');
             $table->foreign('idLocal')->references('idLocal')->on('local');
+            
             $table->timestamps();
         });
     }

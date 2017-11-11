@@ -12,13 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/resultado-detalhado.blade.php</file>
+            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/administrador_servicos_vencidos.blade.php</file>
             <file>file:/C:/wamp/www/Ouvidoria/app/Http/Controllers/AdminController.php</file>
-            <file>file:/C:/wamp/www/Ouvidoria/resources/views/auth/register.blade.php</file>
-            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/administrador_usuarios.blade.php</file>
+            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/administrador_servicos_todos.blade.php</file>
+            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/administrador_servicos.blade.php</file>
             <file>file:/C:/wamp/www/Ouvidoria/public/index.php</file>
             <file>file:/C:/wamp/www/Ouvidoria/routes/web.php</file>
-            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/administrador_usuarios_resultado.blade.php</file>
-            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/administrador_usuarios_resultado_detalhado.blade.php</file>
+            <file>file:/C:/wamp/www/Ouvidoria/resources/views/adm/administrador_servicos_denuncias.blade.php</file>
         </group>
     </open-files>
 </project-private>

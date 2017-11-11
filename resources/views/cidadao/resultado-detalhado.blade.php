@@ -44,7 +44,7 @@
                             <section  class="container login box-form">
                                 <div class="col-md-8 col-md-offset-2 well">
                                     <h4>Detalhamento da Solicitação</h4>
-                                     <div class="row">
+                                    <div class="row">
                                         <div class="col-md-3"><strong>Número de protocolo:</strong></div>
                                         <div class="col-md-5">{{$data->protocolo}}</div>
                                     </div>
@@ -95,7 +95,7 @@
                                     </div>
 
                                     <div class="control-group box-btn col-md-12">
-                                        <form name="reabrir-protocolo" class="col-md-6" method="post" action="{{action('CidadaoController@reabrirProtocolo',$data->idSolicitacao_Servicos)}}" onsubmit="check(event)">
+                                        <form name="reabrir-protocolo"class="col-md-6" method="post" action="{{action('CidadaoController@reabrirProtocolo',$data->idSolicitacao_Servicos)}}" onsubmit="check(event)">
                                              {{csrf_field()}}
                                         <button type="submit" name="buscar" class="btn btn-primary" id="imprimir">
                                             <span class="glyphicon glyphicon-send"></span>
@@ -106,7 +106,7 @@
                                             Reabrir solicitação
                                         </button>
                                         </form>
-                                       <button type=""  name="back" id="voltar" class="btn btn-primary " >
+                                        <button type=""  name="back" id="voltar" class="btn btn-primary " >
                                                 <span class="glyphicon glyphicon-send"></span>
                                                 Voltar
                                             </button>
@@ -118,21 +118,40 @@
                 </div>
             </div>
         </div>
-    </div>
-     <script>
-            document.getElementById('voltar').onclick = function () {
-           history.go(-1);
-
-        };
-       </script>
+    </div>   
    <script>
         document.getElementById('imprimir').onclick = function () {
             window.print();
             history.back();
 
-        };   
+        };
+        document.getElementById('voltar').onclick = function () {
+            history.back();
+
+        };
     </script>
-    
+    <script>
+        function check(event){
+            var status = {{$data->status_servicos}};
+            console.log(status);
+            if (status == 1) {
+                swal({
+                    title: "Ops!",
+                    text: "Ainda não é possível reabrir o protocolo,pois ele está em análise!",
+                    icon: "warning",
+                });
+                  event.preventDefault();
+            }
+            if (status == 2) {
+                swal({
+                    title: "Ops!",
+                    text: "Ainda não é possível reabrir o protocolo,pois ele está em fase de execução!",
+                    icon: "warning",
+                });
+                  event.preventDefault();
+            }
+        }
+    </script>
            
     <script href="{{asset('js/bootstrap.min.js')}}"></script>
     <script href="{{asset('js/jquery.min.js')}}"></script>
